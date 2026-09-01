@@ -91,7 +91,7 @@
   width: 400px;
   height: 510px;
   border-radius: 200px 200px 30px 30px;
-  background: var(--lilas);
+  background: var(--pink);
   padding: 12px;
   box-shadow: var(--sombra);
 }
