@@ -42,7 +42,7 @@ export default function Home() {
           <div className="photo-frame">
 
             <img
-              src="/sky_cartas.jpeg"
+              src={`${import.meta.env.BASE_URL}sky_cartas.jpeg`}
               alt="Sky - Cartas com Sky"
               onError={(e) => { e.target.style.background = "var(--lilas)"; }}
             />
