@@ -77,7 +77,7 @@ export default function Footer() {
         </p>
 
         <span>
-          Feito com ✦ por Sky Crizosti
+          ✦ Feito por Sky Crizosti
         </span>
 
       </div>
