@@ -1,0 +1,33 @@
+import { Link, useLocation } from "react-router-dom";
+import "./Header.css";
+
+export default function Header() {
+  const location = useLocation();
+
+  const isActive = (path) => location.pathname === path;
+
+  return (
+    <header className="header">
+      <div className="header-container">
+
+        <Link to="/" className="logo">
+          <span className="logo-star">✦</span>
+          <span>Cartas com Sky</span>
+        </Link>
+
+        <nav>
+          <Link to="/" className={isActive("/") ? "active" : ""}>Início</Link>
+          <Link to="/catalogo" className={isActive("/catalogo") ? "active" : ""}>Catálogo</Link>
+          <Link to="/livros" className={isActive("/livros") ? "active" : ""}>Livros que indico</Link>
+          <Link to="/cursos" className={isActive("/cursos") ? "active" : ""}>Cursos que indico</Link>
+          <Link to="/oraculos" className={isActive("/oraculos") ? "active" : ""}>Meus Oráculos</Link>
+        </nav>
+
+        <Link to="/agendamento" className="header-button">
+          Agendar
+        </Link>
+
+      </div>
+    </header>
+  );
+}

@@ -1,0 +1,21 @@
+:root {
+  --lilas-fundo: #faf7ff;
+  --lilas-claro: #f1e9ff;
+  --lilas: #d9c2ff;
+
+  --rosa-claro: #f8c8dc;
+  --pink: #e83f91;
+  --pink-escuro: #c72d77;
+
+  --roxo: #6b3fa0;
+  --roxo-escuro: #45256b;
+
+  --branco: #ffffff;
+  --texto: #493b52;
+  --texto-claro: #75677d;
+
+  --sombra: 0 10px 30px rgba(107, 63, 160, 0.10);
+
+  --radius: 22px;
+  --transition: 0.3s ease;
+}
