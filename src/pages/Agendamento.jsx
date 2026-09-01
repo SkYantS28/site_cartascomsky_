@@ -44,9 +44,9 @@ export default function Agendamento() {
             de perguntas ou horas que você deseja contratar.
           </p>
 
-          <a href="/catalogo" className="link-button">
+          <Link to="/catalogo" className="link-button">
             Ver catálogo →
-          </a>
+          </Link>
         </div>
 
         <div className="process-step">
