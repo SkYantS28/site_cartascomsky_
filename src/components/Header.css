@@ -70,7 +70,6 @@ nav a.active {
   transform: translateY(-2px);
 }
 
-
 /* =========================
    TABLET
 ========================= */
@@ -107,23 +106,46 @@ nav a.active {
 @media (max-width: 850px) {
 
   .header-container {
-    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "logo button"
+      "nav nav";
+
+    padding: 13px 16px;
     gap: 12px;
   }
 
   .logo {
+    grid-area: logo;
     font-size: 17px;
     gap: 6px;
     white-space: nowrap;
   }
 
+  .header-button {
+    grid-area: button;
+    padding: 9px 15px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
   nav {
+    grid-area: nav;
+
     display: flex;
-    gap: 12px;
+    width: 100%;
+
+    gap: 20px;
+
     overflow-x: auto;
-    flex: 1;
+    overflow-y: hidden;
+
     justify-content: flex-start;
+
     scrollbar-width: none;
+
+    padding: 3px 0 5px;
   }
 
   nav::-webkit-scrollbar {
@@ -131,14 +153,9 @@ nav a.active {
   }
 
   nav a {
-    font-size: 12px;
+    font-size: 13px;
     white-space: nowrap;
-  }
-
-  .header-button {
-    padding: 9px 13px;
-    font-size: 12px;
-    white-space: nowrap;
+    flex-shrink: 0;
   }
 }
 
@@ -162,16 +179,16 @@ nav a.active {
     font-size: 14px;
   }
 
+  .header-button {
+    padding: 8px 13px;
+    font-size: 11px;
+  }
+
   nav {
-    gap: 10px;
+    gap: 18px;
   }
 
   nav a {
-    font-size: 11px;
-  }
-
-  .header-button {
-    padding: 8px 11px;
-    font-size: 11px;
+    font-size: 12px;
   }
 }
