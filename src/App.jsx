@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import StarBackground from "./components/StarBackground";
@@ -12,7 +12,7 @@ import Agendamento from "./pages/Agendamento";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
 
       <StarBackground />
 
@@ -29,6 +29,6 @@ export default function App() {
         </Routes>
       </main>
 
-    </BrowserRouter>
+    </HashRouter>
   );
 }
