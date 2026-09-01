@@ -24,7 +24,7 @@ export default function Footer() {
 
         <div className="footer-column">
 
-          <h3>Navegação</h3>
+          <h2>Navegação</h2>
 
           <Link to="/">Início</Link>
           <Link to="/catalogo">Catálogo</Link>
@@ -38,7 +38,7 @@ export default function Footer() {
 
         <div className="footer-column">
 
-          <h3>Contato</h3>
+          <h2>Contato</h2>
 
           <a
             href="https://www.instagram.com/cartascomsky_/"
@@ -68,7 +68,7 @@ export default function Footer() {
       <div className="footer-bottom">
 
         <p>
-          © {currentYear} Cartas com Sky. Todos os direitos reservados.
+          © {currentYear} Sky Crizosti. Todos os direitos reservados.
         </p>
 
         <p>
@@ -77,7 +77,7 @@ export default function Footer() {
         </p>
 
         <span>
-          Feito com ✦ por Sky
+          Feito com ✦ por Sky Crizosti
         </span>
 
       </div>
