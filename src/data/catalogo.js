@@ -29,18 +29,6 @@ export const perguntas = {
   ],
 };
 
-export const consultaLivre = {
-  titulo: "Consulta Livre",
-  descricao:
-    "Atendimento com perguntas ilimitadas dentro do tempo escolhido, permitindo aprofundar situações e explorar diferentes áreas da vida com mais liberdade.",
-
-  precos: [
-    { nome: "1 hora", valor: 125 },
-    { nome: "2 horas", valor: 245 },
-    { nome: "3 horas", valor: 365 },
-  ],
-};
-
 export const espiritualidade = {
   titulo: "Perguntas à Espiritualidade",
   descricao:
@@ -52,6 +40,18 @@ export const espiritualidade = {
     { nome: "3 perguntas", valor: 125 },
     { nome: "4 perguntas", valor: 165 },
     { nome: "5 perguntas", valor: 205 },
+  ],
+};
+
+export const consultaLivre = {
+  titulo: "Consulta Livre",
+  descricao:
+    "Atendimento com perguntas ilimitadas dentro do tempo escolhido, permitindo aprofundar situações e explorar diferentes áreas da vida com mais liberdade.",
+
+  precos: [
+    { nome: "1 hora", valor: 125 },
+    { nome: "2 horas", valor: 245 },
+    { nome: "3 horas", valor: 365 },
   ],
 };
 

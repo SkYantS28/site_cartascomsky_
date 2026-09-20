@@ -35,13 +35,11 @@ export default function Livros() {
                 </div>
 
                 <div className="book-info">
+                    <span>{livro.categoria}</span>
 
-                <span>{livro.categoria}</span>
+                    <h2>{livro.titulo}</h2>
 
-                <h2>{livro.titulo}</h2>
-
-                <h3>{livro.autor}</h3>
-
+                    <h3>{livro.autor}</h3>
                 </div>
 
             </article>

@@ -64,13 +64,13 @@ export default function Catalogo() {
             </div>
 
             <aside>
-            <strong>
-                Taxa de urgência: R$ {informacoes.urgencia.valor},00
-            </strong>
+                <strong>
+                    Taxa de urgência: R$ {informacoes.urgencia.valor},00
+                </strong>
 
-            <span>
-                Entrega em menos de 24h.
-            </span>
+                <span>
+                    Entrega em menos de 24h.
+                </span>
             </aside>
 
         </section>
@@ -156,20 +156,6 @@ export default function Catalogo() {
 
         <section className="catalog-section">
 
-            <h2>Consulta Livre</h2>
-
-            <p>{consultaLivre.descricao}</p>
-
-            <div className="prices">
-            {consultaLivre.precos.map((item) => (
-                <PriceCard key={item.nome} item={item} />
-            ))}
-            </div>
-
-        </section>
-
-        <section className="catalog-section">
-
             <h2>Perguntas à Espiritualidade</h2>
 
             <div className="prices">
@@ -180,6 +166,20 @@ export default function Catalogo() {
 
             <div className="prices">
             {espiritualidade.precos.slice(1).map((item) => (
+                <PriceCard key={item.nome} item={item} />
+            ))}
+            </div>
+
+        </section>
+
+        <section className="catalog-section">
+
+            <h2>Consulta Livre</h2>
+
+            <p>{consultaLivre.descricao}</p>
+
+            <div className="prices">
+            {consultaLivre.precos.map((item) => (
                 <PriceCard key={item.nome} item={item} />
             ))}
             </div>
