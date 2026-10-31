@@ -1,4 +1,6 @@
 
+import { useEffect, useState } from "react";
+
 import {
   perguntas,
   consultaLivre,
@@ -20,6 +22,83 @@ function formatarValor(valor) {
     style: "currency",
     currency: "BRL",
   });
+}
+
+const navegacao = [
+  { id: "informacoes", nome: "Informações importantes" },
+  { id: "planos", nome: "Planos Mensais" },
+  { id: "circulo-lua", nome: "✦ Círculo da Lua" },
+  { id: "valores", nome: "Valores" },
+  { id: "perguntas-oraculo", nome: "Perguntas ao Oráculo" },
+  {
+    id: "perguntas-espiritualidade",
+    nome: "Perguntas à Espiritualidade",
+  },
+  { id: "consulta-livre", nome: "Consulta Livre" },
+  { id: "previsao-mensal", nome: "Previsão Mensal" },
+  { id: "metodos", nome: "Métodos" },
+  { id: "previsoes-2028", nome: "Previsões para 2028" },
+];
+
+function CatalogNavigation() {
+  const [activeSection, setActiveSection] = useState("informacoes");
+
+  useEffect(() => {
+    const sections = navegacao
+      .map((item) => document.getElementById(item.id))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSections = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) =>
+              b.intersectionRatio - a.intersectionRatio
+          );
+
+        if (visibleSections.length > 0) {
+          setActiveSection(visibleSections[0].target.id);
+        }
+      },
+      {
+        rootMargin: "-110px 0px -65% 0px",
+        threshold: [0, 0.1, 0.25, 0.5],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <nav
+      className="catalog-navigation"
+      aria-label="Navegação do catálogo"
+    >
+      <div className="catalog-navigation__inner">
+        <span className="catalog-navigation__label">
+          NAVEGAR PELO CATÁLOGO
+        </span>
+
+        <div className="catalog-navigation__links">
+          {navegacao.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className={
+                activeSection === item.id ? "active" : ""
+              }
+              onClick={() => setActiveSection(item.id)}
+            >
+              {item.nome}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+  );
 }
 
 function PriceCard({ item }) {
@@ -89,7 +168,9 @@ function ForecastCard({ consulta }) {
         <strong>{formatarValor(consulta.valor)}</strong>
       </div>
 
-      <p className="forecast-description">{consulta.descricao}</p>
+      <p className="forecast-description">
+        {consulta.descricao}
+      </p>
 
       <div className="forecast-decks">
         {consulta.decks?.map((deck, index) => (
@@ -111,6 +192,9 @@ export default function Catalogo() {
 
   return (
     <div className="catalogo">
+
+      {/* CABEÇALHO */}
+
       <section className="page-header">
         <span>✦ CARTAS COM SKY</span>
 
@@ -125,7 +209,13 @@ export default function Catalogo() {
         </p>
       </section>
 
-      <section className="important">
+      {/* NAVEGAÇÃO */}
+
+      <CatalogNavigation />
+
+      {/* INFORMAÇÕES IMPORTANTES */}
+
+      <section id="informacoes" className="important">
         <h1>Informações importantes</h1>
 
         <div>
@@ -138,7 +228,8 @@ export default function Catalogo() {
 
         <aside>
           <strong>
-            Taxa de urgência: {formatarValor(informacoes.urgencia.valor)}
+            Taxa de urgência:{" "}
+            {formatarValor(informacoes.urgencia.valor)}
           </strong>
 
           <span>{informacoes.urgencia.prazo}</span>
@@ -149,7 +240,9 @@ export default function Catalogo() {
         </p>
       </section>
 
-      <section className="plans">
+      {/* PLANOS MENSAIS */}
+
+      <section id="planos" className="plans">
         <div className="section-heading">
           <span>✦ ACOMPANHAMENTO</span>
 
@@ -175,7 +268,9 @@ export default function Catalogo() {
         </div>
       </section>
 
-      <section className="fidelity">
+      {/* CÍRCULO DA LUA */}
+
+      <section id="circulo-lua" className="fidelity">
         <span>✦ CÍRCULO DA LUA</span>
 
         <h2>
@@ -194,7 +289,12 @@ export default function Catalogo() {
         </div>
       </section>
 
-      <section className="catalog-section">
+      {/* PERGUNTAS AO ORÁCULO */}
+
+      <section
+        id="perguntas-oraculo"
+        className="catalog-section"
+      >
         <h2>Perguntas ao Oráculo</h2>
 
         <p>{perguntas.descricao}</p>
@@ -206,7 +306,12 @@ export default function Catalogo() {
         </div>
       </section>
 
-      <section className="catalog-section">
+      {/* PERGUNTAS À ESPIRITUALIDADE */}
+
+      <section
+        id="perguntas-espiritualidade"
+        className="catalog-section"
+      >
         <h2>Perguntas à Espiritualidade</h2>
 
         <p>{espiritualidade.descricao}</p>
@@ -218,7 +323,12 @@ export default function Catalogo() {
         </div>
       </section>
 
-      <section className="catalog-section">
+      {/* CONSULTA LIVRE */}
+
+      <section
+        id="consulta-livre"
+        className="catalog-section"
+      >
         <h2>Consulta Livre</h2>
 
         <p>{consultaLivre.descricao}</p>
@@ -230,9 +340,15 @@ export default function Catalogo() {
         </div>
       </section>
 
-      <section className="catalog-section monthly-forecast">
+      {/* PREVISÃO MENSAL */}
+
+      <section
+        id="previsao-mensal"
+        className="catalog-section monthly-forecast"
+      >
         <div className="section-heading">
           <span>✦ ACOMPANHAMENTO DO MÊS</span>
+
           <h2>
             Previsão
             <strong> Mensal</strong>
@@ -253,43 +369,62 @@ export default function Catalogo() {
           <article className="monthly-deck">
             <span>1º DECK</span>
             <h3>O que tende a se manifestar?</h3>
+
             <p>
-              Investiga as principais tendências e como elas podem
-              se desenvolver durante o mês.
+              Investiga as principais tendências e como elas
+              podem se desenvolver durante o mês.
             </p>
+
             <ul>
               <li>Casa 1: Principal tendência.</li>
-              <li>Casa 2: Como essa tendência se desenvolve ou se complementa.</li>
-              <li>Fundo do deck: Energia subjacente da situação.</li>
+              <li>
+                Casa 2: Como essa tendência se desenvolve
+                ou se complementa.
+              </li>
+              <li>
+                Fundo do deck: Energia subjacente da situação.
+              </li>
             </ul>
           </article>
 
           <article className="monthly-deck">
             <span>2º DECK</span>
             <h3>O que merece minha atenção?</h3>
+
             <p>
-              Analisa os pontos que exigem cuidado e a melhor maneira
-              de lidar com eles.
+              Analisa os pontos que exigem cuidado e a melhor
+              maneira de lidar com eles.
             </p>
+
             <ul>
               <li>Casa 1: O que merece atenção.</li>
               <li>Casa 2: Como lidar com a situação.</li>
               <li>Casa 3: Melhor postura diante do cenário.</li>
-              <li>Fundo do deck: Energia subjacente da situação.</li>
+              <li>
+                Fundo do deck: Energia subjacente da situação.
+              </li>
             </ul>
           </article>
 
           <article className="monthly-deck">
             <span>3º DECK</span>
             <h3>O que essa área pode me ensinar?</h3>
+
             <p>
-              Explora os aprendizados e o significado mais profundo
-              das experiências do mês.
+              Explora os aprendizados e o significado mais
+              profundo das experiências do mês.
             </p>
+
             <ul>
               <li>Casa 1: Principal aprendizado.</li>
-              <li>Casa 2: Como desenvolver ou aplicar esse aprendizado.</li>
-              <li>Fundo do deck: Significado mais profundo da situação.</li>
+              <li>
+                Casa 2: Como desenvolver ou aplicar
+                esse aprendizado.
+              </li>
+              <li>
+                Fundo do deck: Significado mais profundo
+                da situação.
+              </li>
             </ul>
           </article>
         </div>
@@ -303,9 +438,12 @@ export default function Catalogo() {
         </div>
       </section>
 
-      <section className="catalog-section">
+      {/* VALORES DOS MÉTODOS */}
+
+      <section id="valores" className="catalog-section">
         <div className="section-heading">
           <span>✦ LEITURAS PERSONALIZADAS</span>
+
           <h2>
             Valores dos
             <strong> Métodos</strong>
@@ -335,7 +473,9 @@ export default function Catalogo() {
         </div>
       </section>
 
-      <section className="methods-section">
+      {/* MÉTODOS */}
+
+      <section id="metodos" className="methods-section">
         <div className="section-heading">
           <span>✦ MÉTODOS</span>
 
@@ -363,7 +503,10 @@ export default function Catalogo() {
 
               <div className="method-grid">
                 {methods.map((method) => (
-                  <MethodCard key={method.nome} method={method} />
+                  <MethodCard
+                    key={method.nome}
+                    method={method}
+                  />
                 ))}
               </div>
             </div>
@@ -371,7 +514,12 @@ export default function Catalogo() {
         })}
       </section>
 
-      <section className="special-forecasts">
+      {/* PREVISÕES PARA 2028 */}
+
+      <section
+        id="previsoes-2028"
+        className="special-forecasts"
+      >
         <div className="section-heading">
           <span>✦ EDIÇÃO ESPECIAL</span>
 
@@ -398,7 +546,10 @@ export default function Catalogo() {
 
         <div className="forecast-consultations">
           {previsoes2028.consultas.map((consulta) => (
-            <ForecastCard key={consulta.nome} consulta={consulta} />
+            <ForecastCard
+              key={consulta.nome}
+              consulta={consulta}
+            />
           ))}
         </div>
 
@@ -419,6 +570,7 @@ export default function Catalogo() {
 
         <article className="completing-forecast">
           <span>✦ LEITURA MAIS COMPLETA</span>
+
           <h3>{previsoes2028.completão.nome}</h3>
 
           <strong>
@@ -436,6 +588,7 @@ export default function Catalogo() {
           </div>
         </article>
       </section>
+
     </div>
   );
 }
