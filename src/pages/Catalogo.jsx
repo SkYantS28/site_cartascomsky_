@@ -34,6 +34,7 @@ export default function Catalogo() {
     "Emocional e Autoconhecimento",
     "Amor e Relacionamentos",
     "Mediunidade e Espiritualidade",
+    "Fim de Ano — Previsões para 2028"
   ];
 
   return (
