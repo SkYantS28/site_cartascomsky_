@@ -1,3 +1,4 @@
+
 import {
   perguntas,
   consultaLivre,
@@ -5,291 +6,436 @@ import {
   previsaoMensal,
   metodos,
   metodosPrecos,
+  previsoes2028,
   planos,
   fidelidade,
   informacoes,
 } from "../data/catalogo";
 
 import MethodCard from "../components/MethodCard";
-
 import "./Catalogo.css";
+
+function formatarValor(valor) {
+  return Number(valor).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+}
 
 function PriceCard({ item }) {
   return (
     <div className="price-card">
       <span>{item.nome}</span>
-
-      <strong>
-        R$ {item.valor.toFixed(2).replace(".", ",")}
-      </strong>
+      <strong>{formatarValor(item.valor)}</strong>
     </div>
   );
 }
 
-export default function Catalogo() {
+function DeckCard({ deck }) {
+  return (
+    <article className="forecast-deck">
+      <h4>{deck.nome}</h4>
 
+      {deck.meses && (
+        <div className="forecast-months">
+          {deck.meses.map((mes) => (
+            <span key={mes}>{mes}</span>
+          ))}
+        </div>
+      )}
+
+      {deck.casas && (
+        <div className="forecast-positions">
+          {deck.casas.map((casa, index) => (
+            <p key={index}>
+              <span>✦</span> {casa}
+            </p>
+          ))}
+        </div>
+      )}
+
+      {deck.perguntas?.map((item, index) => (
+        <div className="forecast-question" key={index}>
+          <h5>{item.pergunta}</h5>
+
+          {item.casas?.map((casa, casaIndex) => (
+            <p key={casaIndex}>{casa}</p>
+          ))}
+
+          {item.fundo && (
+            <small>Fundo do deck: {item.fundo}</small>
+          )}
+        </div>
+      ))}
+
+      {deck.fundo && (
+        <small className="forecast-general-bottom">
+          Fundo do deck: {deck.fundo}
+        </small>
+      )}
+    </article>
+  );
+}
+
+function ForecastCard({ consulta }) {
+  return (
+    <article className="forecast-card">
+      <div className="forecast-card-header">
+        <div>
+          <span>CONSULTA ESPECIAL</span>
+          <h3>{consulta.nome}</h3>
+        </div>
+
+        <strong>{formatarValor(consulta.valor)}</strong>
+      </div>
+
+      <p className="forecast-description">{consulta.descricao}</p>
+
+      <div className="forecast-decks">
+        {consulta.decks?.map((deck, index) => (
+          <DeckCard key={index} deck={deck} />
+        ))}
+      </div>
+    </article>
+  );
+}
+
+export default function Catalogo() {
   const categorias = [
     "Caminhos, Escolhas e Decisões",
     "Trabalho, Carreira e Prosperidade",
     "Emocional e Autoconhecimento",
     "Amor e Relacionamentos",
     "Mediunidade e Espiritualidade",
-    "Fim de Ano — Previsões para 2028"
   ];
 
   return (
     <div className="catalogo">
+      <section className="page-header">
+        <span>✦ CARTAS COM SKY</span>
 
-        <section className="page-header">
-            <span>✦ CARTAS COM SKY</span>
+        <h1>
+          Catálogo de
+          <strong> Leituras</strong>
+        </h1>
 
-            <h1>
-            Catálogo de
-            <strong> Leituras</strong>
-            </h1>
+        <p>
+          Escolha a leitura que melhor corresponde ao que
+          você deseja compreender neste momento.
+        </p>
+      </section>
 
-            <p>
-            Escolha a leitura que melhor corresponde ao que
-            você deseja compreender neste momento.
+      <section className="important">
+        <h1>Informações importantes</h1>
+
+        <div>
+          {informacoes.regras.map((regra, index) => (
+            <p key={index}>
+              <span className="star-pink">✦</span> {regra}
             </p>
-        </section>
-       
-        <section className="important">
+          ))}
+        </div>
 
-            <h1>Informações importantes</h1>
+        <aside>
+          <strong>
+            Taxa de urgência: {formatarValor(informacoes.urgencia.valor)}
+          </strong>
 
-            <div>
-            {informacoes.regras.map((regra, index) => (
-                <p key={index}><span className="star-pink">✦</span> {regra}</p>
-            ))}
+          <span>{informacoes.urgencia.prazo}</span>
+        </aside>
+
+        <p className="delivery-info">
+          Prazo padrão: {informacoes.prazo}
+        </p>
+      </section>
+
+      <section className="plans">
+        <div className="section-heading">
+          <span>✦ ACOMPANHAMENTO</span>
+
+          <h2>
+            Planos
+            <strong> Mensais</strong>
+          </h2>
+        </div>
+
+        <div className="plan-grid">
+          {planos.map((plano) => (
+            <div className="plan-card" key={plano.nome}>
+              <h3>{plano.nome}</h3>
+
+              <strong>
+                {formatarValor(plano.valor)}
+                <small>/mês</small>
+              </strong>
+
+              <p>{plano.descricao}</p>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <aside>
-                <strong>
-                    Taxa de urgência: R$ {informacoes.urgencia.valor},00
-                </strong>
+      <section className="fidelity">
+        <span>✦ CÍRCULO DA LUA</span>
 
-                <span>
-                    Entrega em menos de 24h.
-                </span>
-            </aside>
+        <h2>
+          Quanto mais você consulta,
+          <strong> mais benefícios acumula.</strong>
+        </h2>
 
-        </section>
-
-        <section className="plans">
-
-            <div className="section-heading">
-            <span>✦ ACOMPANHAMENTO</span>
-
-            <h2>
-                Planos
-                <strong> Mensais</strong>
-            </h2>
+        <div className="fidelity-grid">
+          {fidelidade.map((item) => (
+            <div key={item.atendimentos}>
+              <strong>{item.atendimentos}</strong>
+              <span>atendimentos</span>
+              <p>{item.beneficio}</p>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <div className="plan-grid">
+      <section className="catalog-section">
+        <h2>Perguntas ao Oráculo</h2>
 
-            {planos.map((plano) => (
-                <div className="plan-card" key={plano.nome}>
+        <p>{perguntas.descricao}</p>
 
-                <h3>{plano.nome}</h3>
+        <div className="prices">
+          {perguntas.precos.map((item) => (
+            <PriceCard key={item.nome} item={item} />
+          ))}
+        </div>
+      </section>
 
-                <strong>
-                    R$ {plano.valor.toLocaleString("pt-BR")}
-                    <small>/mês</small>
-                </strong>
+      <section className="catalog-section">
+        <h2>Perguntas à Espiritualidade</h2>
 
-                <p>{plano.descricao}</p>
+        <p>{espiritualidade.descricao}</p>
 
-                </div>
-            ))}
+        <div className="prices">
+          {espiritualidade.precos.map((item) => (
+            <PriceCard key={item.nome} item={item} />
+          ))}
+        </div>
+      </section>
 
-            </div>
+      <section className="catalog-section">
+        <h2>Consulta Livre</h2>
 
-        </section>
+        <p>{consultaLivre.descricao}</p>
 
-        <section className="fidelity">
+        <div className="prices">
+          {consultaLivre.precos.map((item) => (
+            <PriceCard key={item.nome} item={item} />
+          ))}
+        </div>
+      </section>
 
-            <span>✦ CÍRCULO DA LUA</span>
+      <section className="catalog-section monthly-forecast">
+        <div className="section-heading">
+          <span>✦ ACOMPANHAMENTO DO MÊS</span>
+          <h2>
+            Previsão
+            <strong> Mensal</strong>
+          </h2>
+        </div>
 
-            <h2>
-            Quanto mais você consulta,
-            <strong> mais benefícios acumula.</strong>
-            </h2>
+        <p>{previsaoMensal.descricao}</p>
 
-            <div className="fidelity-grid">
+        <h3>Áreas disponíveis</h3>
 
-            {fidelidade.map((item) => (
-                <div key={item.atendimentos}>
+        <div className="area-list">
+          {previsaoMensal.areas.map((area) => (
+            <span key={area}>{area}</span>
+          ))}
+        </div>
 
-                <strong>
-                    {item.atendimentos}
-                </strong>
+        <div className="monthly-decks">
+          <article className="monthly-deck">
+            <span>1º DECK</span>
+            <h3>O que tende a se manifestar?</h3>
+            <p>
+              Investiga as principais tendências e como elas podem
+              se desenvolver durante o mês.
+            </p>
+            <ul>
+              <li>Casa 1: Principal tendência.</li>
+              <li>Casa 2: Como essa tendência se desenvolve ou se complementa.</li>
+              <li>Fundo do deck: Energia subjacente da situação.</li>
+            </ul>
+          </article>
 
-                <span>atendimentos</span>
+          <article className="monthly-deck">
+            <span>2º DECK</span>
+            <h3>O que merece minha atenção?</h3>
+            <p>
+              Analisa os pontos que exigem cuidado e a melhor maneira
+              de lidar com eles.
+            </p>
+            <ul>
+              <li>Casa 1: O que merece atenção.</li>
+              <li>Casa 2: Como lidar com a situação.</li>
+              <li>Casa 3: Melhor postura diante do cenário.</li>
+              <li>Fundo do deck: Energia subjacente da situação.</li>
+            </ul>
+          </article>
 
-                <p>{item.beneficio}</p>
+          <article className="monthly-deck">
+            <span>3º DECK</span>
+            <h3>O que essa área pode me ensinar?</h3>
+            <p>
+              Explora os aprendizados e o significado mais profundo
+              das experiências do mês.
+            </p>
+            <ul>
+              <li>Casa 1: Principal aprendizado.</li>
+              <li>Casa 2: Como desenvolver ou aplicar esse aprendizado.</li>
+              <li>Fundo do deck: Significado mais profundo da situação.</li>
+            </ul>
+          </article>
+        </div>
 
-                </div>
-            ))}
+        <h3>Valores por quantidade de áreas</h3>
 
-            </div>
+        <div className="prices">
+          {previsaoMensal.precos.map((item) => (
+            <PriceCard key={item.nome} item={item} />
+          ))}
+        </div>
+      </section>
 
-        </section>
+      <section className="catalog-section">
+        <div className="section-heading">
+          <span>✦ LEITURAS PERSONALIZADAS</span>
+          <h2>
+            Valores dos
+            <strong> Métodos</strong>
+          </h2>
+        </div>
 
-        <section className="catalog-section">
-
-            <h2>Perguntas ao Oráculo</h2>
+        <div className="method-prices">
+          <div>
+            <h3>Leitura Normal</h3>
 
             <div className="prices">
-            <PriceCard item={perguntas.precos[0]} />
-            </div>
-
-            <h3>Combos</h3>
-
-            <div className="prices">
-            {perguntas.precos.slice(1).map((item) => (
+              {metodosPrecos.normal.map((item) => (
                 <PriceCard key={item.nome} item={item} />
-            ))}
+              ))}
             </div>
+          </div>
 
-        </section>
-
-        <section className="catalog-section">
-
-            <h2>Perguntas à Espiritualidade</h2>
+          <div>
+            <h3>Leitura Espiritual</h3>
 
             <div className="prices">
-            <PriceCard item={espiritualidade.precos[0]} />
-            </div>
-
-            <h3>Combos</h3>
-
-            <div className="prices">
-            {espiritualidade.precos.slice(1).map((item) => (
+              {metodosPrecos.espiritual.map((item) => (
                 <PriceCard key={item.nome} item={item} />
-            ))}
+              ))}
             </div>
+          </div>
+        </div>
+      </section>
 
-        </section>
+      <section className="methods-section">
+        <div className="section-heading">
+          <span>✦ MÉTODOS</span>
 
-        <section className="catalog-section">
+          <h2>
+            Escolha seu
+            <strong> caminho.</strong>
+          </h2>
 
-            <h2>Consulta Livre</h2>
+          <p>
+            Explore os métodos disponíveis e abra cada leitura
+            para conhecer suas perguntas e estrutura.
+          </p>
+        </div>
 
-            <p>{consultaLivre.descricao}</p>
+        {categorias.map((categoria) => {
+          const methods = metodos.filter(
+            (method) => method.categoria === categoria
+          );
 
-            <div className="prices">
-            {consultaLivre.precos.map((item) => (
-                <PriceCard key={item.nome} item={item} />
-            ))}
-            </div>
+          if (!methods.length) return null;
 
-        </section>
+          return (
+            <div className="method-category" key={categoria}>
+              <h3>{categoria}</h3>
 
-        <section className="catalog-section">
-
-            <h2>Previsão Mensal</h2>
-
-            <p>{previsaoMensal.descricao}</p>
-
-            <div className="area-list">
-            {previsaoMensal.areas.map((area) => (
-                <span key={area}>{area}</span>
-            ))}
-            </div>
-
-            <div className="prices">
-            <PriceCard item={previsaoMensal.precos[0]} />
-            </div>
-
-            <h3>Combos</h3>
-
-            <div className="prices">
-            {previsaoMensal.precos.slice(1).map((item) => (
-                <PriceCard key={item.nome} item={item} />
-            ))}
-            </div>
-
-        </section>
-
-        <section className="catalog-section">
-
-            <h2>Valores dos Métodos</h2>
-
-            <div className="method-prices">
-
-            <div>
-                <h3>Leitura Normal</h3>
-
-                <div className="prices">
-                {metodosPrecos.normal.map((item) => (
-                    <PriceCard
-                    key={item.nome}
-                    item={item}
-                    />
+              <div className="method-grid">
+                {methods.map((method) => (
+                  <MethodCard key={method.nome} method={method} />
                 ))}
-                </div>
-
+              </div>
             </div>
+          );
+        })}
+      </section>
 
-            <div>
-                <h3>Leitura Espiritual</h3>
+      <section className="special-forecasts">
+        <div className="section-heading">
+          <span>✦ EDIÇÃO ESPECIAL</span>
 
-                <div className="prices">
-                {metodosPrecos.espiritual.map((item) => (
-                    <PriceCard
-                    key={item.nome}
-                    item={item}
-                    />
-                ))}
-                </div>
+          <h2>
+            Fim de Ano —
+            <strong> Previsões para 2028</strong>
+          </h2>
 
-            </div>
+          <p>{previsoes2028.descricao}</p>
+        </div>
 
-            </div>
+        <div className="forecast-how">
+          <h3>Como funciona</h3>
 
-        </section>
+          <div className="forecast-how-grid">
+            {previsoes2028.comoFunciona.map((item) => (
+              <article key={item.nome}>
+                <h4>{item.nome}</h4>
+                <p>{item.descricao}</p>
+              </article>
+            ))}
+          </div>
+        </div>
 
-        <section className="methods-section">
+        <div className="forecast-consultations">
+          {previsoes2028.consultas.map((consulta) => (
+            <ForecastCard key={consulta.nome} consulta={consulta} />
+          ))}
+        </div>
 
-            <div className="section-heading">
-            <span>✦ MÉTODOS</span>
+        <div className="forecast-area-prices">
+          <h3>Previsões por quantidade de áreas</h3>
 
-            <h2>
-                Escolha seu
-                <strong> caminho.</strong>
-            </h2>
-            </div>
+          <p>
+            Escolha as áreas da sua vida que deseja explorar
+            na previsão anual de 2028.
+          </p>
 
-            {categorias.map((categoria) => {
+          <div className="prices">
+            {previsoes2028.precosPorArea.map((item) => (
+              <PriceCard key={item.nome} item={item} />
+            ))}
+          </div>
+        </div>
 
-            const methods = metodos.filter(
-                (method) => method.categoria === categoria
-            );
+        <article className="completing-forecast">
+          <span>✦ LEITURA MAIS COMPLETA</span>
+          <h3>{previsoes2028.completão.nome}</h3>
 
-            return (
-                <div className="method-category" key={categoria}>
+          <strong>
+            {formatarValor(previsoes2028.completão.valor)}
+          </strong>
 
-                <h3>{categoria}</h3>
+          <p>{previsoes2028.completão.descricao}</p>
 
-                <div className="method-grid">
+          <h4>Áreas incluídas</h4>
 
-                    {methods.map((method) => (
-                    <MethodCard
-                        key={method.nome}
-                        method={method}
-                    />
-                    ))}
-
-                </div>
-
-                </div>
-            );
-            })}
-
-        </section>
-
+          <div className="area-list">
+            {previsoes2028.completão.areas.map((area) => (
+              <span key={area}>{area}</span>
+            ))}
+          </div>
+        </article>
+      </section>
     </div>
   );
 }
