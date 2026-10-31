@@ -691,3 +691,131 @@
     padding: 22px;
   }
 }
+
+/* ========================================
+   NAVBAR DO CATÁLOGO
+======================================== */
+
+.catalog-navigation {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  margin: 0 0 35px;
+  padding: 15px 0;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--lilas);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(80, 45, 100, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.catalog-navigation__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.catalog-navigation__label {
+  padding: 0 20px;
+  color: var(--pink);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.catalog-navigation__links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 15px 5px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--lilas) transparent;
+}
+
+.catalog-navigation__links::-webkit-scrollbar {
+  height: 4px;
+}
+
+.catalog-navigation__links::-webkit-scrollbar-thumb {
+  background: var(--lilas);
+  border-radius: 10px;
+}
+
+.catalog-navigation__links a {
+  flex-shrink: 0;
+  padding: 10px 15px;
+  color: var(--roxo);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.catalog-navigation__links a:hover {
+  color: var(--pink);
+  background: var(--rosa-claro);
+  border-color: var(--lilas);
+}
+
+.catalog-navigation__links a.active {
+  color: white;
+  background: var(--roxo);
+  border-color: var(--roxo);
+  box-shadow: 0 4px 12px rgba(80, 45, 100, 0.15);
+}
+
+/* Evita que o título fique escondido atrás da navegação */
+
+.catalogo section[id] {
+  scroll-margin-top: 150px;
+}
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 800px) {
+  .catalog-navigation {
+    margin-bottom: 25px;
+    padding: 12px 0;
+    border-radius: 15px;
+  }
+
+  .catalog-navigation__label {
+    padding: 0 15px;
+    font-size: 9px;
+  }
+
+  .catalog-navigation__links {
+    gap: 5px;
+    padding: 0 10px 5px;
+  }
+
+  .catalog-navigation__links a {
+    padding: 9px 12px;
+    font-size: 11px;
+  }
+
+  .catalogo section[id] {
+    scroll-margin-top: 130px;
+  }
+}
+
+@media (max-width: 480px) {
+  .catalog-navigation {
+    border-radius: 12px;
+  }
+
+  .catalog-navigation__links a {
+    font-size: 10px;
+    padding: 8px 11px;
+  }
+}
