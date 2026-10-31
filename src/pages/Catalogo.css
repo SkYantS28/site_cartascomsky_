@@ -345,3 +345,349 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Informações e prazo */
+.delivery-info {
+  margin-top: 15px;
+  font-size: 13px;
+}
+
+/* Descrição dos métodos */
+.methods-section .section-heading > p,
+.special-forecasts .section-heading > p {
+  max-width: 700px;
+  margin: 15px auto 0;
+  color: var(--texto-claro);
+  line-height: 1.7;
+}
+
+.method-highlights,
+.method-spread,
+.method-observations {
+  margin-top: 25px;
+}
+
+.method-highlights h4,
+.method-spread h4,
+.method-observations h4 {
+  color: var(--roxo);
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.method-spread {
+  padding-top: 20px;
+  border-top: 1px solid var(--lilas);
+}
+
+.method-spread > p,
+.tiragem-item > p {
+  margin-bottom: 8px;
+}
+
+.tiragem-item {
+  padding: 15px;
+  margin-bottom: 12px;
+  background: var(--lilas-claro);
+  border-radius: 14px;
+}
+
+.tiragem-item h5 {
+  color: var(--roxo-escuro);
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.tiragem-item p,
+.tiragem-item li,
+.method-spread > p {
+  color: var(--texto-claro);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.tiragem-item ul,
+.method-spread ol {
+  padding-left: 22px;
+}
+
+.tiragem-item small,
+.method-spread small {
+  display: block;
+  margin-top: 12px;
+  color: var(--pink);
+  line-height: 1.6;
+}
+
+.tiragem-periodos,
+.forecast-months {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.tiragem-periodos span,
+.forecast-months span {
+  padding: 6px 12px;
+  background: var(--rosa-claro);
+  color: var(--roxo);
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.method-observations {
+  padding: 18px;
+  background: var(--rosa-claro);
+  border-radius: 14px;
+}
+
+.method-observations li {
+  color: var(--texto-claro);
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 5px 0 5px 18px;
+}
+
+.method-additional {
+  display: block;
+  margin-top: 20px;
+  color: var(--pink);
+  line-height: 1.6;
+}
+
+/* Previsão mensal */
+.monthly-decks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 35px;
+}
+
+.monthly-deck {
+  padding: 28px;
+  background: var(--lilas-claro);
+  border-radius: 22px;
+}
+
+.monthly-deck > span,
+.completing-forecast > span {
+  color: var(--pink);
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.monthly-deck h3 {
+  border: none;
+  padding: 0;
+  margin: 12px 0;
+  font-size: 21px;
+}
+
+.monthly-deck p,
+.monthly-deck li {
+  color: var(--texto-claro);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.monthly-deck ul {
+  padding-left: 18px;
+  margin-top: 15px;
+}
+
+.monthly-deck li {
+  margin-bottom: 8px;
+}
+
+/* Previsões especiais de 2028 */
+.special-forecasts {
+  margin-top: 130px;
+}
+
+.forecast-how {
+  margin-bottom: 55px;
+}
+
+.forecast-how > h3,
+.forecast-area-prices > h3 {
+  color: var(--roxo);
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.forecast-how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.forecast-how-grid article {
+  padding: 25px;
+  background: var(--lilas-claro);
+  border-radius: 20px;
+}
+
+.forecast-how-grid h4 {
+  color: var(--roxo-escuro);
+  margin-bottom: 10px;
+}
+
+.forecast-how-grid p {
+  color: var(--texto-claro);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.forecast-consultations {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.forecast-card {
+  padding: 30px;
+  border: 1px solid var(--lilas);
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 24px;
+}
+
+.forecast-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.forecast-card-header span {
+  color: var(--pink);
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.forecast-card-header h3 {
+  color: var(--roxo-escuro);
+  font-size: 23px;
+  margin-top: 8px;
+}
+
+.forecast-card-header > strong {
+  color: var(--pink);
+  font-size: 24px;
+  white-space: nowrap;
+}
+
+.forecast-description {
+  color: var(--texto-claro);
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 15px 0 25px;
+}
+
+.forecast-decks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.forecast-deck {
+  padding: 22px;
+  background: var(--lilas-claro);
+  border-radius: 18px;
+}
+
+.forecast-deck h4 {
+  color: var(--roxo);
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+.forecast-question {
+  padding: 15px 0;
+  border-top: 1px solid var(--lilas);
+}
+
+.forecast-question h5 {
+  color: var(--roxo-escuro);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.forecast-question p,
+.forecast-positions p {
+  color: var(--texto-claro);
+  font-size: 12px;
+  line-height: 1.7;
+  margin-bottom: 5px;
+}
+
+.forecast-question small,
+.forecast-general-bottom {
+  display: block;
+  color: var(--pink);
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+.forecast-area-prices {
+  margin-top: 65px;
+}
+
+.forecast-area-prices > p {
+  color: var(--texto-claro);
+  line-height: 1.7;
+}
+
+.completing-forecast {
+  margin-top: 45px;
+  padding: 35px;
+  background: var(--lilas-claro);
+  border-radius: 24px;
+}
+
+.completing-forecast h3 {
+  color: var(--roxo-escuro);
+  font-size: 28px;
+  margin: 12px 0;
+}
+
+.completing-forecast > strong {
+  display: block;
+  color: var(--pink);
+  font-size: 30px;
+}
+
+.completing-forecast > p {
+  color: var(--texto-claro);
+  line-height: 1.7;
+  margin-top: 15px;
+}
+
+.completing-forecast h4 {
+  color: var(--roxo);
+  margin-top: 25px;
+}
+
+@media (max-width: 800px) {
+  .monthly-decks,
+  .forecast-how-grid,
+  .forecast-decks {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast-card-header {
+    flex-direction: column;
+  }
+
+  .forecast-card {
+    padding: 20px;
+  }
+
+  .monthly-deck {
+    padding: 22px;
+  }
+}
