@@ -1,5 +1,4 @@
 import "./Agendamento.css";
-import { Link } from "react-router-dom";
 
 export default function Agendamento() {
 
@@ -45,9 +44,9 @@ export default function Agendamento() {
             de perguntas ou horas que você deseja contratar.
           </p>
 
-          <Link to="/catalogo" className="link-button">
+          <a href="/catalogo" className="link-button">
             Ver catálogo →
-          </Link>
+          </a>
         </div>
 
         <div className="process-step">

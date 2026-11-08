@@ -1,183 +1,30 @@
 
-import { useEffect, useState } from "react";
-
 import {
   perguntas,
   consultaLivre,
   espiritualidade,
   previsaoMensal,
+  previsoes2028,
   metodos,
   metodosPrecos,
-  previsoes2028,
   planos,
   fidelidade,
   informacoes,
 } from "../data/catalogo";
 
 import MethodCard from "../components/MethodCard";
+
 import "./Catalogo.css";
-
-function formatarValor(valor) {
-  return Number(valor).toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
-}
-
-const navegacao = [
-  { id: "informacoes", nome: "Informações importantes" },
-  { id: "planos", nome: "Planos Mensais" },
-  { id: "circulo-lua", nome: "✦ Círculo da Lua" },
-  { id: "valores", nome: "Valores" },
-  { id: "perguntas-oraculo", nome: "Perguntas ao Oráculo" },
-  {
-    id: "perguntas-espiritualidade",
-    nome: "Perguntas à Espiritualidade",
-  },
-  { id: "consulta-livre", nome: "Consulta Livre" },
-  { id: "previsao-mensal", nome: "Previsão Mensal" },
-  { id: "metodos", nome: "Métodos" },
-  { id: "previsoes-2028", nome: "Previsões para 2028" },
-];
-
-function CatalogNavigation() {
-  const [activeSection, setActiveSection] = useState("informacoes");
-
-  useEffect(() => {
-    const sections = navegacao
-      .map((item) => document.getElementById(item.id))
-      .filter(Boolean);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleSections = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort(
-            (a, b) =>
-              b.intersectionRatio - a.intersectionRatio
-          );
-
-        if (visibleSections.length > 0) {
-          setActiveSection(visibleSections[0].target.id);
-        }
-      },
-      {
-        rootMargin: "-110px 0px -65% 0px",
-        threshold: [0, 0.1, 0.25, 0.5],
-      }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <nav
-      className="catalog-navigation"
-      aria-label="Navegação do catálogo"
-    >
-      <div className="catalog-navigation__inner">
-        <span className="catalog-navigation__label">
-          NAVEGAR PELO CATÁLOGO
-        </span>
-
-        <div className="catalog-navigation__links">
-          {navegacao.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={
-                activeSection === item.id ? "active" : ""
-              }
-              onClick={() => setActiveSection(item.id)}
-            >
-              {item.nome}
-            </a>
-          ))}
-        </div>
-      </div>
-    </nav>
-  );
-}
 
 function PriceCard({ item }) {
   return (
     <div className="price-card">
       <span>{item.nome}</span>
-      <strong>{formatarValor(item.valor)}</strong>
+
+      <strong>
+        R$ {item.valor.toFixed(2).replace(".", ",")}
+      </strong>
     </div>
-  );
-}
-
-function DeckCard({ deck }) {
-  return (
-    <article className="forecast-deck">
-      <h4>{deck.nome}</h4>
-
-      {deck.meses && (
-        <div className="forecast-months">
-          {deck.meses.map((mes) => (
-            <span key={mes}>{mes}</span>
-          ))}
-        </div>
-      )}
-
-      {deck.casas && (
-        <div className="forecast-positions">
-          {deck.casas.map((casa, index) => (
-            <p key={index}>
-              <span>✦</span> {casa}
-            </p>
-          ))}
-        </div>
-      )}
-
-      {deck.perguntas?.map((item, index) => (
-        <div className="forecast-question" key={index}>
-          <h5>{item.pergunta}</h5>
-
-          {item.casas?.map((casa, casaIndex) => (
-            <p key={casaIndex}>{casa}</p>
-          ))}
-
-          {item.fundo && (
-            <small>Fundo do deck: {item.fundo}</small>
-          )}
-        </div>
-      ))}
-
-      {deck.fundo && (
-        <small className="forecast-general-bottom">
-          Fundo do deck: {deck.fundo}
-        </small>
-      )}
-    </article>
-  );
-}
-
-function ForecastCard({ consulta }) {
-  return (
-    <article className="forecast-card">
-      <div className="forecast-card-header">
-        <div>
-          <span>CONSULTA ESPECIAL</span>
-          <h3>{consulta.nome}</h3>
-        </div>
-
-        <strong>{formatarValor(consulta.valor)}</strong>
-      </div>
-
-      <p className="forecast-description">
-        {consulta.descricao}
-      </p>
-
-      <div className="forecast-decks">
-        {consulta.decks?.map((deck, index) => (
-          <DeckCard key={index} deck={deck} />
-        ))}
-      </div>
-    </article>
   );
 }
 
@@ -190,10 +37,30 @@ export default function Catalogo() {
     "Mediunidade e Espiritualidade",
   ];
 
+  // Todas as consultas de 2028 utilizam os dados de catalogo.js.
+  // Os valores são exibidos separadamente na seção de preços.
+
+  const previsoes2028Cards = [
+    ...previsoes2028.consultas.map((consulta, index) => ({
+      categoria:
+        index < 2
+          ? "Previsões de Fim de Ano — 2028"
+          : "Previsões por Área — 2028",
+      nome: consulta.nome,
+      descricao: consulta.descricao,
+      itens: consulta.itens,
+    })),
+
+    {
+      categoria: "Previsões de Fim de Ano — 2028",
+      nome: previsoes2028.completão.nome,
+      descricao: previsoes2028.completão.descricao,
+      itens: previsoes2028.completão.itens,
+    },
+  ];
+
   return (
     <div className="catalogo">
-
-      {/* CABEÇALHO */}
 
       <section className="page-header">
         <span>✦ CARTAS COM SKY</span>
@@ -209,9 +76,55 @@ export default function Catalogo() {
         </p>
       </section>
 
-      {/* NAVEGAÇÃO */}
+      {/* SUMÁRIO DO CATÁLOGO */}
 
-      <CatalogNavigation />
+      <nav
+        className="catalog-navbar"
+        aria-label="Sumário do catálogo"
+      >
+        <div className="catalog-nav-header">
+          <span>✦ NAVEGUE PELO CATÁLOGO ✦</span>
+          <h2>Explore nossas leituras</h2>
+          <p>
+            Encontre facilmente a categoria que deseja consultar.
+          </p>
+        </div>
+
+        <div className="catalog-nav-groups">
+
+          <div className="catalog-nav-group">
+            <h3>Informações e benefícios</h3>
+
+            <div className="catalog-nav-links">
+              <a href="#informacoes">Informações importantes</a>
+              <a href="#planos">Planos mensais</a>
+              <a href="#fidelidade">Círculo da Lua</a>
+            </div>
+          </div>
+
+          <div className="catalog-nav-group">
+            <h3>Consultas e leituras</h3>
+
+            <div className="catalog-nav-links">
+              <a href="#perguntas">Perguntas ao Oráculo</a>
+              <a href="#consulta-livre">Consulta Livre</a>
+              <a href="#espiritualidade">Perguntas à Espiritualidade</a>
+              <a href="#previsao-mensal">Previsão Mensal</a>
+            </div>
+          </div>
+
+          <div className="catalog-nav-group">
+            <h3>Previsões e métodos</h3>
+
+            <div className="catalog-nav-links">
+              <a href="#previsoes-2028">Previsões para 2028</a>
+              <a href="#valores-metodos">Valores dos Métodos</a>
+              <a href="#metodos">Métodos e Tiragens</a>
+            </div>
+          </div>
+
+        </div>
+      </nav>
 
       {/* INFORMAÇÕES IMPORTANTES */}
 
@@ -228,16 +141,13 @@ export default function Catalogo() {
 
         <aside>
           <strong>
-            Taxa de urgência:{" "}
-            {formatarValor(informacoes.urgencia.valor)}
+            Taxa de urgência: R$ {informacoes.urgencia.valor},00
           </strong>
 
-          <span>{informacoes.urgencia.prazo}</span>
+          <span>
+            Entrega em menos de 24h.
+          </span>
         </aside>
-
-        <p className="delivery-info">
-          Prazo padrão: {informacoes.prazo}
-        </p>
       </section>
 
       {/* PLANOS MENSAIS */}
@@ -258,7 +168,7 @@ export default function Catalogo() {
               <h3>{plano.nome}</h3>
 
               <strong>
-                {formatarValor(plano.valor)}
+                R$ {plano.valor.toLocaleString("pt-BR")}
                 <small>/mês</small>
               </strong>
 
@@ -270,7 +180,7 @@ export default function Catalogo() {
 
       {/* CÍRCULO DA LUA */}
 
-      <section id="circulo-lua" className="fidelity">
+      <section id="fidelidade" className="fidelity">
         <span>✦ CÍRCULO DA LUA</span>
 
         <h2>
@@ -281,8 +191,12 @@ export default function Catalogo() {
         <div className="fidelity-grid">
           {fidelidade.map((item) => (
             <div key={item.atendimentos}>
-              <strong>{item.atendimentos}</strong>
+              <strong>
+                {item.atendimentos}
+              </strong>
+
               <span>atendimentos</span>
+
               <p>{item.beneficio}</p>
             </div>
           ))}
@@ -291,33 +205,17 @@ export default function Catalogo() {
 
       {/* PERGUNTAS AO ORÁCULO */}
 
-      <section
-        id="perguntas-oraculo"
-        className="catalog-section"
-      >
+      <section id="perguntas" className="catalog-section">
         <h2>Perguntas ao Oráculo</h2>
 
-        <p>{perguntas.descricao}</p>
-
         <div className="prices">
-          {perguntas.precos.map((item) => (
-            <PriceCard key={item.nome} item={item} />
-          ))}
+          <PriceCard item={perguntas.precos[0]} />
         </div>
-      </section>
 
-      {/* PERGUNTAS À ESPIRITUALIDADE */}
-
-      <section
-        id="perguntas-espiritualidade"
-        className="catalog-section"
-      >
-        <h2>Perguntas à Espiritualidade</h2>
-
-        <p>{espiritualidade.descricao}</p>
+        <h3>Combos</h3>
 
         <div className="prices">
-          {espiritualidade.precos.map((item) => (
+          {perguntas.precos.slice(1).map((item) => (
             <PriceCard key={item.nome} item={item} />
           ))}
         </div>
@@ -325,10 +223,7 @@ export default function Catalogo() {
 
       {/* CONSULTA LIVRE */}
 
-      <section
-        id="consulta-livre"
-        className="catalog-section"
-      >
+      <section id="consulta-livre" className="catalog-section">
         <h2>Consulta Livre</h2>
 
         <p>{consultaLivre.descricao}</p>
@@ -340,24 +235,30 @@ export default function Catalogo() {
         </div>
       </section>
 
-      {/* PREVISÃO MENSAL */}
+      {/* PERGUNTAS À ESPIRITUALIDADE */}
 
-      <section
-        id="previsao-mensal"
-        className="catalog-section monthly-forecast"
-      >
-        <div className="section-heading">
-          <span>✦ ACOMPANHAMENTO DO MÊS</span>
+      <section id="espiritualidade" className="catalog-section">
+        <h2>Perguntas à Espiritualidade</h2>
 
-          <h2>
-            Previsão
-            <strong> Mensal</strong>
-          </h2>
+        <div className="prices">
+          <PriceCard item={espiritualidade.precos[0]} />
         </div>
 
-        <p>{previsaoMensal.descricao}</p>
+        <h3>Combos</h3>
 
-        <h3>Áreas disponíveis</h3>
+        <div className="prices">
+          {espiritualidade.precos.slice(1).map((item) => (
+            <PriceCard key={item.nome} item={item} />
+          ))}
+        </div>
+      </section>
+
+      {/* PREVISÃO MENSAL */}
+
+      <section id="previsao-mensal" className="catalog-section">
+        <h2>Previsão Mensal</h2>
+
+        <p>{previsaoMensal.descricao}</p>
 
         <div className="area-list">
           {previsaoMensal.areas.map((area) => (
@@ -365,90 +266,148 @@ export default function Catalogo() {
           ))}
         </div>
 
-        <div className="monthly-decks">
-          <article className="monthly-deck">
-            <span>1º DECK</span>
-            <h3>O que tende a se manifestar?</h3>
-
-            <p>
-              Investiga as principais tendências e como elas
-              podem se desenvolver durante o mês.
-            </p>
-
-            <ul>
-              <li>Casa 1: Principal tendência.</li>
-              <li>
-                Casa 2: Como essa tendência se desenvolve
-                ou se complementa.
-              </li>
-              <li>
-                Fundo do deck: Energia subjacente da situação.
-              </li>
-            </ul>
-          </article>
-
-          <article className="monthly-deck">
-            <span>2º DECK</span>
-            <h3>O que merece minha atenção?</h3>
-
-            <p>
-              Analisa os pontos que exigem cuidado e a melhor
-              maneira de lidar com eles.
-            </p>
-
-            <ul>
-              <li>Casa 1: O que merece atenção.</li>
-              <li>Casa 2: Como lidar com a situação.</li>
-              <li>Casa 3: Melhor postura diante do cenário.</li>
-              <li>
-                Fundo do deck: Energia subjacente da situação.
-              </li>
-            </ul>
-          </article>
-
-          <article className="monthly-deck">
-            <span>3º DECK</span>
-            <h3>O que essa área pode me ensinar?</h3>
-
-            <p>
-              Explora os aprendizados e o significado mais
-              profundo das experiências do mês.
-            </p>
-
-            <ul>
-              <li>Casa 1: Principal aprendizado.</li>
-              <li>
-                Casa 2: Como desenvolver ou aplicar
-                esse aprendizado.
-              </li>
-              <li>
-                Fundo do deck: Significado mais profundo
-                da situação.
-              </li>
-            </ul>
-          </article>
+        <div className="prices">
+          <PriceCard item={previsaoMensal.precos[0]} />
         </div>
 
-        <h3>Valores por quantidade de áreas</h3>
+        <h3>Combos</h3>
 
         <div className="prices">
-          {previsaoMensal.precos.map((item) => (
+          {previsaoMensal.precos.slice(1).map((item) => (
             <PriceCard key={item.nome} item={item} />
           ))}
         </div>
       </section>
 
-      {/* VALORES DOS MÉTODOS */}
+      {/* PREVISÕES PARA 2028 */}
 
-      <section id="valores" className="catalog-section">
+      <section
+        id="previsoes-2028"
+        className="catalog-section forecast-2028"
+      >
         <div className="section-heading">
-          <span>✦ LEITURAS PERSONALIZADAS</span>
+          <span>✦ FIM DE ANO</span>
 
           <h2>
-            Valores dos
-            <strong> Métodos</strong>
+            Previsões para
+            <strong> 2028</strong>
           </h2>
+
+          <p>
+            {previsoes2028.descricao}
+          </p>
         </div>
+
+        {/* VALORES DAS PREVISÕES */}
+
+        <div className="forecast-prices">
+          <h3>Valores das Previsões para 2028</h3>
+
+          <h4>Consultas</h4>
+
+          <div className="prices">
+            {previsoes2028.consultas.map((item) => (
+              <PriceCard
+                key={item.nome}
+                item={{
+                  nome: item.nome,
+                  valor: item.valor,
+                }}
+              />
+            ))}
+          </div>
+
+          <h4>Previsões por Área</h4>
+
+          <div className="prices">
+            {previsoes2028.precosPorArea.map((item) => (
+              <PriceCard
+                key={item.nome}
+                item={item}
+              />
+            ))}
+          </div>
+
+          <h4>Experiência Completa</h4>
+
+          <div className="prices">
+            <PriceCard
+              item={{
+                nome: previsoes2028.completão.nome,
+                valor: previsoes2028.completão.valor,
+              }}
+            />
+          </div>
+        </div>
+
+        {/* EXPLICAÇÃO DAS MODALIDADES */}
+
+        <div className="forecast-intro">
+          <h3>{previsoes2028.comoFunciona.titulo}</h3>
+
+          <p>
+            {previsoes2028.comoFunciona.descricao}
+          </p>
+
+          <div className="forecast-options">
+            {previsoes2028.comoFunciona.opcoes.map((opcao) => (
+              <div className="forecast-option" key={opcao.nome}>
+                <h4>{opcao.nome}</h4>
+
+                <p>{opcao.descricao}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CARDS EXPANSÍVEIS */}
+
+        <div className="forecast-cards">
+          <div className="section-heading">
+            <h3>Previsões de Fim de Ano — 2028</h3>
+          </div>
+
+          <div className="method-grid">
+            {previsoes2028Cards
+              .filter(
+                (previsao) =>
+                  previsao.categoria === "Previsões de Fim de Ano — 2028"
+              )
+              .map((previsao) => (
+                <MethodCard
+                  key={previsao.nome}
+                  method={previsao}
+                />
+              ))}
+          </div>
+
+          <div className="section-heading">
+            <h3>Previsões por Área — 2028</h3>
+          </div>
+
+          <div className="method-grid">
+            {previsoes2028Cards
+              .filter(
+                (previsao) =>
+                  previsao.categoria === "Previsões por Área — 2028"
+              )
+              .map((previsao) => (
+                <MethodCard
+                  key={previsao.nome}
+                  method={previsao}
+                />
+              ))}
+          </div>
+        </div>
+      </section>
+
+      {/* VALORES DOS MÉTODOS */}
+
+      <section
+        id="valores-metodos"
+        className="catalog-section"
+      >
+        <h2>Valores dos Métodos</h2>
 
         <div className="method-prices">
           <div>
@@ -456,7 +415,10 @@ export default function Catalogo() {
 
             <div className="prices">
               {metodosPrecos.normal.map((item) => (
-                <PriceCard key={item.nome} item={item} />
+                <PriceCard
+                  key={item.nome}
+                  item={item}
+                />
               ))}
             </div>
           </div>
@@ -466,14 +428,17 @@ export default function Catalogo() {
 
             <div className="prices">
               {metodosPrecos.espiritual.map((item) => (
-                <PriceCard key={item.nome} item={item} />
+                <PriceCard
+                  key={item.nome}
+                  item={item}
+                />
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* MÉTODOS */}
+      {/* MÉTODOS E TIRAGENS */}
 
       <section id="metodos" className="methods-section">
         <div className="section-heading">
@@ -483,19 +448,12 @@ export default function Catalogo() {
             Escolha seu
             <strong> caminho.</strong>
           </h2>
-
-          <p>
-            Explore os métodos disponíveis e abra cada leitura
-            para conhecer suas perguntas e estrutura.
-          </p>
         </div>
 
         {categorias.map((categoria) => {
           const methods = metodos.filter(
             (method) => method.categoria === categoria
           );
-
-          if (!methods.length) return null;
 
           return (
             <div className="method-category" key={categoria}>
@@ -512,81 +470,6 @@ export default function Catalogo() {
             </div>
           );
         })}
-      </section>
-
-      {/* PREVISÕES PARA 2028 */}
-
-      <section
-        id="previsoes-2028"
-        className="special-forecasts"
-      >
-        <div className="section-heading">
-          <span>✦ EDIÇÃO ESPECIAL</span>
-
-          <h2>
-            Fim de Ano —
-            <strong> Previsões para 2028</strong>
-          </h2>
-
-          <p>{previsoes2028.descricao}</p>
-        </div>
-
-        <div className="forecast-how">
-          <h3>Como funciona</h3>
-
-          <div className="forecast-how-grid">
-            {previsoes2028.comoFunciona.map((item) => (
-              <article key={item.nome}>
-                <h4>{item.nome}</h4>
-                <p>{item.descricao}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <div className="forecast-consultations">
-          {previsoes2028.consultas.map((consulta) => (
-            <ForecastCard
-              key={consulta.nome}
-              consulta={consulta}
-            />
-          ))}
-        </div>
-
-        <div className="forecast-area-prices">
-          <h3>Previsões por quantidade de áreas</h3>
-
-          <p>
-            Escolha as áreas da sua vida que deseja explorar
-            na previsão anual de 2028.
-          </p>
-
-          <div className="prices">
-            {previsoes2028.precosPorArea.map((item) => (
-              <PriceCard key={item.nome} item={item} />
-            ))}
-          </div>
-        </div>
-
-        <article className="completing-forecast">
-          <span>✦ LEITURA MAIS COMPLETA</span>
-
-          <h3>{previsoes2028.completão.nome}</h3>
-
-          <strong>
-            {formatarValor(previsoes2028.completão.valor)}
-          </strong>
-
-          <p>{previsoes2028.completão.descricao}</p>
-
-          <h4>Áreas incluídas</h4>
-
-          <div className="area-list">
-            {previsoes2028.completão.areas.map((area) => (
-              <span key={area}>{area}</span>
-            ))}
-          </div>
-        </article>
       </section>
 
     </div>

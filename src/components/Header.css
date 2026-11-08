@@ -11,6 +11,7 @@
   max-width: 1200px;
   margin: auto;
   padding: 18px 24px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,6 +22,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+
   color: var(--roxo-escuro);
   font-weight: 700;
   font-size: 21px;
@@ -59,9 +61,11 @@ nav a.active {
   color: white;
   padding: 11px 20px;
   border-radius: 30px;
+
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
+
   transition: var(--transition);
 }
 
@@ -70,122 +74,8 @@ nav a.active {
   transform: translateY(-2px);
 }
 
-/* =========================
-   TABLET
-========================= */
-
-@media (max-width: 1000px) {
-
-  .header-container {
-    gap: 18px;
-    padding: 16px 20px;
-  }
-
-  nav {
-    gap: 16px;
-  }
-
-  nav a {
-    font-size: 13px;
-  }
-
-  .logo {
-    font-size: 18px;
-  }
-
-  .header-button {
-    padding: 10px 16px;
-  }
-}
-
-
-/* =========================
-   CELULAR
-========================= */
 @media (max-width: 850px) {
-
-  .header-container {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      "logo button"
-      "nav nav";
-
-    padding: 13px 16px;
-    gap: 12px;
-  }
-
-  .logo {
-    grid-area: logo;
-    font-size: 17px;
-    gap: 6px;
-    white-space: nowrap;
-  }
-
-  .header-button {
-    grid-area: button;
-    padding: 9px 15px;
-    font-size: 12px;
-    white-space: nowrap;
-  }
-
   nav {
-    grid-area: nav;
-
-    display: flex;
-    width: 100%;
-    gap: 20px;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    justify-content: flex-start;
-
-    scrollbar-width: none;
-
-    padding: 3px 0 5px;
-  }
-
-  nav::-webkit-scrollbar {
     display: none;
-  }
-
-  nav a {
-    font-size: 13px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-}
-
-/* =========================
-   CELULAR PEQUENO
-========================= */
-
-@media (max-width: 600px) {
-
-  .header-container {
-    padding: 12px 14px;
-    gap: 10px;
-  }
-
-  .logo {
-    font-size: 15px;
-  }
-
-  .logo-star {
-    font-size: 14px;
-  }
-
-  .header-button {
-    padding: 8px 13px;
-    font-size: 11px;
-  }
-
-  nav {
-    gap: 18px;
-  }
-
-  nav a {
-    font-size: 12px;
   }
 }
