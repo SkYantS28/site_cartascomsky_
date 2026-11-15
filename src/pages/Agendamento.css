@@ -1,0 +1,170 @@
+.agendamento-page {
+  max-width: 1150px;
+  margin: auto;
+  padding: 40px 24px 100px;
+}
+
+.agendamento-page .page-header {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.agendamento-page .page-header > span {
+  color: var(--pink);
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.agendamento-page .page-header h1 {
+  font-size: clamp(45px, 7vw, 75px);
+  color: var(--roxo-escuro);
+  line-height: 1;
+}
+
+.agendamento-page .page-header h1 strong {
+  color: var(--pink);
+}
+
+.agendamento-page .page-header p {
+  max-width: 600px;
+  margin: auto;
+  color: var(--texto-claro);
+  line-height: 1.7;
+}
+
+.booking-process {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin: 100px 0;
+}
+
+.process-step {
+  background: white;
+  padding: 50px 30px;
+  border-radius: 25px;
+  border: 1px solid var(--lilas);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.process-step:hover {
+  box-shadow: var(--sombra);
+}
+
+.step-number {
+  display: inline-block;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--pink);
+  margin-bottom: 20px;
+}
+
+.process-step h2 {
+  color: var(--roxo-escuro);
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.process-step p {
+  color: var(--texto-claro);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.link-button {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--pink);
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.link-button:hover {
+  transform: translateX(5px);
+}
+
+.payment-section {
+  margin: 120px 0;
+  text-align: center;
+}
+
+.payment-section > span {
+  color: var(--pink);
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.payment-section h2 {
+  color: var(--roxo-escuro);
+  font-size: clamp(38px, 5vw, 58px);
+  margin-bottom: 50px;
+}
+
+.payment-section h2 strong {
+  color: var(--pink);
+}
+
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.payment-card {
+  padding: 35px;
+  background: var(--lilas-claro);
+  border-radius: 22px;
+}
+
+.payment-card strong {
+  display: block;
+  color: var(--roxo-escuro);
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.payment-card p {
+  color: var(--texto-claro);
+  line-height: 1.7;
+}
+
+.payment-card span {
+  display: block;
+  color: var(--pink);
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.cta-booking {
+  padding: 60px 40px;
+  background: var(--roxo-claro);
+  border-radius: 30px;
+  text-align: center;
+}
+
+.cta-booking p {
+  color: var(--roxo-escuro);
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.cta-booking .button-primary {
+  padding: 15px 30px;
+  border-radius: 30px;
+}
+
+@media (max-width: 800px) {
+  .booking-process,
+  .payment-options {
+    grid-template-columns: 1fr;
+  }
+}
