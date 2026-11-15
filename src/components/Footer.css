@@ -1,0 +1,209 @@
+.footer {
+  margin-top: 80px;
+
+  background: var(--roxo-escuro);
+  color: white;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+
+  padding: 60px 24px 45px;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
+
+  gap: 60px;
+}
+
+
+/* =========================
+   MARCA
+========================= */
+
+.footer-brand {
+  max-width: 360px;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: white;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  margin-bottom: 16px;
+}
+
+.footer-logo span:first-child {
+  color: var(--pink);
+}
+
+.footer-brand p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* =========================
+   COLUNAS
+========================= */
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.footer-column h3 {
+  margin: 0 0 10px;
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.footer-column a {
+  width: fit-content;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 14px;
+
+  text-decoration: none;
+
+  transition: var(--transition);
+}
+
+.footer-column a:hover {
+  color: var(--pink);
+
+  transform: translateX(3px);
+}
+
+
+/* =========================
+   PARTE INFERIOR
+========================= */
+
+.footer-bottom {
+  max-width: 1200px;
+
+  margin: auto;
+
+  padding: 22px 24px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  flex-wrap: wrap;
+}
+
+.footer-bottom p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.52);
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+.footer-bottom span {
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 850px) {
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 40px;
+
+    padding: 50px 20px 35px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+
+    max-width: 500px;
+  }
+
+  .footer-bottom {
+    padding: 20px;
+  }
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+  .footer {
+    margin-top: 60px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    padding: 45px 20px 35px;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+
+  .footer-logo {
+    font-size: 20px;
+  }
+
+  .footer-brand p {
+    font-size: 13px;
+  }
+
+  .footer-column a {
+    font-size: 13px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    padding: 20px;
+  }
+}
