@@ -852,23 +852,23 @@ export const metodosPrecos = {
   ],
 };
 
-export const previsoes2028 = {
-  titulo: "Fim de Ano — Previsões para 2028",
+export const previsoes2027 = {
+  titulo: "Fim de Ano — Previsões para 2027",
 
   descricao:
-    "Prepare-se para conhecer as tendências, oportunidades, desafios e aprendizados que podem marcar seu ano de 2028. Escolha uma previsão específica, combine as áreas que deseja analisar ou opte pela leitura completa para ter uma visão abrangente dos diferentes aspectos da sua vida.",
+    "Prepare-se para conhecer as tendências, oportunidades, desafios e aprendizados que podem marcar seu ano de 2027. Escolha uma previsão específica, combine as áreas que deseja analisar ou opte pela leitura completa para ter uma visão abrangente dos diferentes aspectos da sua vida.",
 
   comoFunciona: {
     titulo: "Como funcionam as consultas",
 
     descricao:
-      "Você poderá escolher entre três modalidades: Previsão Geral 2028, Previsões por Área ou Completão 2028. Escolha a opção que melhor corresponde ao que deseja compreender sobre seu ano.",
+      "Você poderá escolher entre três modalidades: Previsão Geral 2027, Previsões por Área ou Completão 2027. Escolha a opção que melhor corresponde ao que deseja compreender sobre seu ano.",
 
     opcoes: [
       {
-        nome: "Previsão Geral 2028",
+        nome: "Previsão Geral 2027",
         descricao:
-          "Panorama completo das sete áreas da vida, com tendências, oportunidades, desafios e direcionamentos para 2028.",
+          "Panorama completo das sete áreas da vida, com tendências, oportunidades, desafios e direcionamentos para 2027.",
       },
       {
         nome: "Previsões por Área",
@@ -876,7 +876,7 @@ export const previsoes2028 = {
           "Análise completa de uma ou mais áreas escolhidas por você, com panorama anual e previsões de janeiro a dezembro.",
       },
       {
-        nome: "Completão 2028",
+        nome: "Completão 2027",
         descricao:
           "Análise completa das sete áreas da vida, incluindo panorama anual, oportunidades, desafios, aprendizados, direcionamentos e previsões mensais.",
       },
@@ -885,14 +885,14 @@ export const previsoes2028 = {
 
   consultas: [
     {
-      nome: "Previsão Geral 2028 — Panorama do Ano",
+      nome: "Previsão Geral 2027 — Panorama do Ano",
       valor: 185,
 
       descricao:
-        "Uma leitura para conhecer as principais tendências, oportunidades, desafios e acontecimentos de 2028, considerando todas as áreas da vida.",
+        "Uma leitura para conhecer as principais tendências, oportunidades, desafios e acontecimentos de 2027, considerando todas as áreas da vida.",
 
       itens: [
-        "Panorama geral de 2028.",
+        "Panorama geral de 2027.",
         "Energia predominante e tendências do ano.",
         "Principais acontecimentos e desafios.",
         "Oportunidades e direcionamentos.",
@@ -903,13 +903,20 @@ export const previsoes2028 = {
     },
 
     {
-      nome: "Previsão Mensal 2028 — Janeiro a Dezembro",
+      nome: "Previsão Mensal 2027 — Janeiro a Dezembro",
       valor: 245,
 
       descricao:
-        "Uma leitura para acompanhar os doze meses de 2028, identificando as principais tendências, oportunidades e desafios de cada período.",
+        "Uma leitura para acompanhar os doze meses de 2027, identificando as principais tendências, oportunidades e desafios de cada período.",
 
       itens: [
+        "Panorama geral de 2027.",
+        "Energia predominante e tendências do ano.",
+        "Principais acontecimentos e desafios.",
+        "Oportunidades e direcionamentos.",
+        "Aprendizados e possibilidades de conquista.",
+        "Conselho e orientação para o ano.",
+        "Análise das sete áreas da vida.",
         "Previsão de janeiro a dezembro.",
         "Principal tendência de cada mês.",
         "Possíveis desdobramentos mensais.",
@@ -919,14 +926,14 @@ export const previsoes2028 = {
     },
 
     {
-      nome: "Previsão Amorosa 2028",
+      nome: "Previsão Amorosa 2027",
       valor: 125,
 
       descricao:
-        "Uma leitura completa sobre sua vida amorosa em 2028, considerando relacionamentos, sentimentos, oportunidades e desafios afetivos.",
+        "Uma leitura completa sobre sua vida amorosa em 2027, considerando relacionamentos, sentimentos, oportunidades e desafios afetivos.",
 
       itens: [
-        "Panorama amoroso de 2028.",
+        "Panorama amoroso de 2027.",
         "Tendências e oportunidades afetivas.",
         "Desafios e pontos de atenção.",
         "Aprendizados e direcionamentos amorosos.",
@@ -935,14 +942,14 @@ export const previsoes2028 = {
     },
 
     {
-      nome: "Previsão Financeira 2028",
+      nome: "Previsão Financeira 2027",
       valor: 125,
 
       descricao:
-        "Uma leitura sobre sua vida financeira em 2028, considerando dinheiro, estabilidade, ganhos, gastos, oportunidades e prosperidade.",
+        "Uma leitura sobre sua vida financeira em 2027, considerando dinheiro, estabilidade, ganhos, gastos, oportunidades e prosperidade.",
 
       itens: [
-        "Panorama financeiro de 2028.",
+        "Panorama financeiro de 2027.",
         "Tendências relacionadas a dinheiro e estabilidade.",
         "Oportunidades e possibilidades de ganhos.",
         "Desafios e pontos de atenção.",
@@ -952,14 +959,14 @@ export const previsoes2028 = {
     },
 
     {
-      nome: "Previsão Profissional 2028",
+      nome: "Previsão Profissional 2027",
       valor: 125,
 
       descricao:
-        "Uma leitura sobre sua carreira e vida profissional em 2028, considerando trabalho, oportunidades, ambiente profissional e crescimento.",
+        "Uma leitura sobre sua carreira e vida profissional em 2027, considerando trabalho, oportunidades, ambiente profissional e crescimento.",
 
       itens: [
-        "Panorama profissional de 2028.",
+        "Panorama profissional de 2027.",
         "Tendências na carreira e no trabalho.",
         "Oportunidades de crescimento.",
         "Desafios e mudanças profissionais.",
@@ -969,14 +976,14 @@ export const previsoes2028 = {
     },
 
     {
-      nome: "Previsão Familiar 2028",
+      nome: "Previsão Familiar 2027",
       valor: 125,
 
       descricao:
-        "Uma leitura sobre suas relações familiares em 2028, considerando convivência, vínculos, mudanças, oportunidades e desafios.",
+        "Uma leitura sobre suas relações familiares em 2027, considerando convivência, vínculos, mudanças, oportunidades e desafios.",
 
       itens: [
-        "Panorama familiar de 2028.",
+        "Panorama familiar de 2027.",
         "Tendências nas relações familiares.",
         "Convivência e vínculos.",
         "Possíveis mudanças e desafios.",
@@ -986,14 +993,14 @@ export const previsoes2028 = {
     },
 
     {
-      nome: "Previsão dos Estudos 2028",
+      nome: "Previsão dos Estudos 2027",
       valor: 125,
 
       descricao:
-        "Uma leitura sobre sua vida acadêmica e seus estudos em 2028, considerando aprendizado, desempenho, oportunidades e desenvolvimento.",
+        "Uma leitura sobre sua vida acadêmica e seus estudos em 2027, considerando aprendizado, desempenho, oportunidades e desenvolvimento.",
 
       itens: [
-        "Panorama acadêmico de 2028.",
+        "Panorama acadêmico de 2027.",
         "Tendências relacionadas aos estudos.",
         "Oportunidades de aprendizado.",
         "Desafios e pontos de atenção.",
@@ -1003,14 +1010,14 @@ export const previsoes2028 = {
     },
 
     {
-      nome: "Previsão da Vida Social 2028",
+      nome: "Previsão da Vida Social 2027",
       valor: 125,
 
       descricao:
-        "Uma leitura sobre sua vida social em 2028, considerando amizades, contatos, convivência, novas conexões e experiências sociais.",
+        "Uma leitura sobre sua vida social em 2027, considerando amizades, contatos, convivência, novas conexões e experiências sociais.",
 
       itens: [
-        "Panorama social de 2028.",
+        "Panorama social de 2027.",
         "Tendências nas amizades e relações sociais.",
         "Novas conexões e oportunidades.",
         "Desafios na convivência.",
@@ -1020,14 +1027,14 @@ export const previsoes2028 = {
     },
 
     {
-      nome: "Previsão da Saúde 2028",
+      nome: "Previsão da Saúde 2027",
       valor: 125,
 
       descricao:
-        "Uma leitura simbólica sobre tendências relacionadas ao bem-estar, autocuidado e hábitos saudáveis ao longo de 2028. Não substitui avaliação, orientação ou acompanhamento médico.",
+        "Uma leitura simbólica sobre tendências relacionadas ao bem-estar, autocuidado e hábitos saudáveis ao longo de 2027. Não substitui avaliação, orientação ou acompanhamento médico.",
 
       itens: [
-        "Panorama simbólico do bem-estar em 2028.",
+        "Panorama simbólico do bem-estar em 2027.",
         "Tendências relacionadas ao autocuidado.",
         "Hábitos e aspectos que merecem atenção.",
         "Orientações para priorizar o bem-estar.",
@@ -1057,11 +1064,11 @@ export const previsoes2028 = {
   ],
 
   completão: {
-    nome: "Completão 2028",
+    nome: "Completão 2027",
     valor: 799,
 
     descricao:
-      "Uma análise aprofundada de todas as sete áreas da vida, reunindo amor, vida financeira, trabalho, família, estudos, vida social e saúde em uma leitura completa sobre seu ano de 2028.",
+      "Uma análise aprofundada de todas as sete áreas da vida, reunindo amor, vida financeira, trabalho, família, estudos, vida social e saúde em uma leitura completa sobre seu ano de 2027.",
 
     areas: [
       "Amor",
@@ -1074,13 +1081,13 @@ export const previsoes2028 = {
     ],
 
     itens: [
-      "Previsão Amorosa 2028.",
-      "Previsão Financeira 2028.",
-      "Previsão Profissional 2028.",
-      "Previsão Familiar 2028.",
-      "Previsão dos Estudos 2028.",
-      "Previsão da Vida Social 2028.",
-      "Previsão da Saúde 2028.",
+      "Previsão Amorosa 2027.",
+      "Previsão Financeira 2027.",
+      "Previsão Profissional 2027.",
+      "Previsão Familiar 2027.",
+      "Previsão dos Estudos 2027.",
+      "Previsão da Vida Social 2027.",
+      "Previsão da Saúde 2027.",
       "Panorama anual de cada área.",
       "Oportunidades, desafios e aprendizados.",
       "Direcionamentos e conselhos.",

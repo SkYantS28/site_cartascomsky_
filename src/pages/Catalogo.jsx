@@ -4,7 +4,7 @@ import {
   consultaLivre,
   espiritualidade,
   previsaoMensal,
-  previsoes2028,
+  previsoes2027,
   metodos,
   metodosPrecos,
   planos,
@@ -37,25 +37,25 @@ export default function Catalogo() {
     "Mediunidade e Espiritualidade",
   ];
 
-  // Todas as consultas de 2028 utilizam os dados de catalogo.js.
+  // Todas as consultas de 2027 utilizam os dados de catalogo.js.
   // Os valores são exibidos separadamente na seção de preços.
 
-  const previsoes2028Cards = [
-    ...previsoes2028.consultas.map((consulta, index) => ({
+  const previsoes2027Cards = [
+    ...previsoes2027.consultas.map((consulta, index) => ({
       categoria:
         index < 2
-          ? "Previsões de Fim de Ano — 2028"
-          : "Previsões por Área — 2028",
+          ? "Previsões de Fim de Ano — 2027"
+          : "Previsões por Área — 2027",
       nome: consulta.nome,
       descricao: consulta.descricao,
       itens: consulta.itens,
     })),
 
     {
-      categoria: "Previsões de Fim de Ano — 2028",
-      nome: previsoes2028.completão.nome,
-      descricao: previsoes2028.completão.descricao,
-      itens: previsoes2028.completão.itens,
+      categoria: "Previsões de Fim de Ano — 2027",
+      nome: previsoes2027.completão.nome,
+      descricao: previsoes2027.completão.descricao,
+      itens: previsoes2027.completão.itens,
     },
   ];
 
@@ -107,9 +107,8 @@ export default function Catalogo() {
 
             <div className="catalog-nav-links">
               <a href="#perguntas">Perguntas ao Oráculo</a>
-              <a href="#consulta-livre">Consulta Livre</a>
               <a href="#espiritualidade">Perguntas à Espiritualidade</a>
-              <a href="#previsao-mensal">Previsão Mensal</a>
+              <a href="#consulta-livre">Consulta Livre</a>
             </div>
           </div>
 
@@ -117,7 +116,8 @@ export default function Catalogo() {
             <h3>Previsões e métodos</h3>
 
             <div className="catalog-nav-links">
-              <a href="#previsoes-2028">Previsões para 2028</a>
+              <a href="#previsao-mensal">Previsão Mensal</a>
+              <a href="#previsoes-2027">Previsões para 2027</a>
               <a href="#valores-metodos">Valores dos Métodos</a>
               <a href="#metodos">Métodos e Tiragens</a>
             </div>
@@ -221,20 +221,6 @@ export default function Catalogo() {
         </div>
       </section>
 
-      {/* CONSULTA LIVRE */}
-
-      <section id="consulta-livre" className="catalog-section">
-        <h2>Consulta Livre</h2>
-
-        <p>{consultaLivre.descricao}</p>
-
-        <div className="prices">
-          {consultaLivre.precos.map((item) => (
-            <PriceCard key={item.nome} item={item} />
-          ))}
-        </div>
-      </section>
-
       {/* PERGUNTAS À ESPIRITUALIDADE */}
 
       <section id="espiritualidade" className="catalog-section">
@@ -248,6 +234,20 @@ export default function Catalogo() {
 
         <div className="prices">
           {espiritualidade.precos.slice(1).map((item) => (
+            <PriceCard key={item.nome} item={item} />
+          ))}
+        </div>
+      </section>
+
+      {/* CONSULTA LIVRE */}
+
+      <section id="consulta-livre" className="catalog-section">
+        <h2>Consulta Livre</h2>
+
+        <p>{consultaLivre.descricao}</p>
+
+        <div className="prices">
+          {consultaLivre.precos.map((item) => (
             <PriceCard key={item.nome} item={item} />
           ))}
         </div>
@@ -279,34 +279,34 @@ export default function Catalogo() {
         </div>
       </section>
 
-      {/* PREVISÕES PARA 2028 */}
+      {/* PREVISÕES PARA 2027 */}
 
       <section
-        id="previsoes-2028"
-        className="catalog-section forecast-2028"
+        id="previsoes-2027"
+        className="catalog-section forecast-2027"
       >
         <div className="section-heading">
           <span>✦ FIM DE ANO</span>
 
           <h2>
             Previsões para
-            <strong> 2028</strong>
+            <strong> 2027</strong>
           </h2>
 
           <p>
-            {previsoes2028.descricao}
+            {previsoes2027.descricao}
           </p>
         </div>
 
         {/* VALORES DAS PREVISÕES */}
 
         <div className="forecast-prices">
-          <h3>Valores das Previsões para 2028</h3>
+          <h3>Valores das Previsões para 2027</h3>
 
           <h4>Consultas</h4>
 
           <div className="prices">
-            {previsoes2028.consultas.map((item) => (
+            {previsoes2027.consultas.map((item) => (
               <PriceCard
                 key={item.nome}
                 item={{
@@ -320,7 +320,7 @@ export default function Catalogo() {
           <h4>Previsões por Área</h4>
 
           <div className="prices">
-            {previsoes2028.precosPorArea.map((item) => (
+            {previsoes2027.precosPorArea.map((item) => (
               <PriceCard
                 key={item.nome}
                 item={item}
@@ -333,8 +333,8 @@ export default function Catalogo() {
           <div className="prices">
             <PriceCard
               item={{
-                nome: previsoes2028.completão.nome,
-                valor: previsoes2028.completão.valor,
+                nome: previsoes2027.completão.nome,
+                valor: previsoes2027.completão.valor,
               }}
             />
           </div>
@@ -343,14 +343,14 @@ export default function Catalogo() {
         {/* EXPLICAÇÃO DAS MODALIDADES */}
 
         <div className="forecast-intro">
-          <h3>{previsoes2028.comoFunciona.titulo}</h3>
+          <h3>{previsoes2027.comoFunciona.titulo}</h3>
 
           <p>
-            {previsoes2028.comoFunciona.descricao}
+            {previsoes2027.comoFunciona.descricao}
           </p>
 
           <div className="forecast-options">
-            {previsoes2028.comoFunciona.opcoes.map((opcao) => (
+            {previsoes2027.comoFunciona.opcoes.map((opcao) => (
               <div className="forecast-option" key={opcao.nome}>
                 <h4>{opcao.nome}</h4>
 
@@ -364,14 +364,14 @@ export default function Catalogo() {
 
         <div className="forecast-cards">
           <div className="section-heading">
-            <h3>Previsões de Fim de Ano — 2028</h3>
+            <h3>Previsões de Fim de Ano — 2027</h3>
           </div>
 
           <div className="method-grid">
-            {previsoes2028Cards
+            {previsoes2027Cards
               .filter(
                 (previsao) =>
-                  previsao.categoria === "Previsões de Fim de Ano — 2028"
+                  previsao.categoria === "Previsões de Fim de Ano — 2027"
               )
               .map((previsao) => (
                 <MethodCard
@@ -382,14 +382,14 @@ export default function Catalogo() {
           </div>
 
           <div className="section-heading">
-            <h3>Previsões por Área — 2028</h3>
+            <h3>Previsões por Área — 2027</h3>
           </div>
 
           <div className="method-grid">
-            {previsoes2028Cards
+            {previsoes2027Cards
               .filter(
                 (previsao) =>
-                  previsao.categoria === "Previsões por Área — 2028"
+                  previsao.categoria === "Previsões por Área — 2027"
               )
               .map((previsao) => (
                 <MethodCard

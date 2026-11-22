@@ -163,10 +163,10 @@
 }
 
 /* =========================================
-   PREVISÕES DE 2028
+   PREVISÕES DE 2027
 ========================================= */
 
-.forecast-2028 {
+.forecast-2027 {
   padding: 65px 45px;
   background: linear-gradient(
     145deg,
@@ -176,16 +176,16 @@
   border-radius: 35px;
 }
 
-.forecast-2028 > .section-heading {
+.forecast-2027 > .section-heading {
   margin-bottom: 45px;
 }
 
-.forecast-2028 .section-heading h2 {
+.forecast-2027 .section-heading h2 {
   font-size: clamp(38px, 5vw, 58px);
   margin-top: 15px;
 }
 
-.forecast-2028 .section-heading p {
+.forecast-2027 .section-heading p {
   max-width: 760px;
   margin: 20px auto 0;
   color: var(--texto-claro);
@@ -193,7 +193,7 @@
 }
 
 /* =========================================
-   VALORES DAS PREVISÕES 2028
+   VALORES DAS PREVISÕES 2027
 ========================================= */
 
 .forecast-prices {
@@ -288,7 +288,7 @@
 }
 
 /* =========================================
-   CARDS EXPANSÍVEIS DE 2028
+   CARDS EXPANSÍVEIS DE 2027
    UTILIZAM O MESMO METHODCARD
 ========================================= */
 
@@ -677,7 +677,7 @@
     grid-template-columns: 1fr;
   }
 
-  .forecast-2028 {
+  .forecast-2027 {
     padding: 45px 25px;
   }
 
@@ -722,7 +722,7 @@
     font-size: 21px;
   }
 
-  .forecast-2028 {
+  .forecast-2027 {
     padding: 35px 18px;
     border-radius: 25px;
   }
