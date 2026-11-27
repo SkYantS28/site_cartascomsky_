@@ -1,123 +1,167 @@
-# Cartas com Sky - Website
+# Cartas com Sky
 
-Um website moderno para leituras de tarot e oráculo, desenvolvido com React 18, Vite e Tailwind CSS.
+<p>
+  <strong>Website institucional e catálogo de serviços para leituras de tarot e oráculo.</strong>
+</p>
 
-## Instalação
+![React](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5.4.2-646CFF?logo=vite&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-6.28.0-CA4245?logo=reactrouter&logoColor=white)
+![Deploy](https://img.shields.io/badge/Azure-Static_Web_Apps-0078D4?logo=microsoftazure&logoColor=white)
+![Status](https://img.shields.io/badge/status-em_desenvolvimento-yellow)
 
-1. Clone o repositório ou extraia os arquivos
-2. Instale as dependências:
+## Sobre o projeto
+
+O **Cartas com Sky** é uma aplicação web desenvolvida para apresentar serviços de leitura de tarot e oráculo, divulgar métodos disponíveis e orientar visitantes pelo processo de agendamento.
+
+Este projeto também representa um exercício prático de desenvolvimento frontend para consolidar conhecimentos em componentização, navegação SPA, organização de dados, responsividade e implantação contínua.
+
+## Funcionalidades
+
+- Página inicial com apresentação da proposta do serviço
+- Catálogo de leituras e métodos disponíveis
+- Página explicativa sobre como funciona o agendamento
+- Integração com WhatsApp para contato e agendamento
+- Informações sobre formas de pagamento
+- Navegação por rotas com React Router
+- Cabeçalho, rodapé e plano de fundo estrelado reutilizáveis
+- Interface adaptada para dispositivos móveis
+- Build automatizado e implantação no Azure Static Web Apps
+
+## Tecnologias
+
+| Tecnologia | Utilização |
+| --- | --- |
+| React 18 | Construção da interface e componentes |
+| React Router DOM | Navegação entre páginas |
+| Vite | Ambiente de desenvolvimento e geração do build |
+| CSS | Estilização, responsividade e variáveis visuais |
+| JavaScript ES6+ | Regras de interação e dados da aplicação |
+| GitHub Actions | Automação de build e implantação |
+| Azure Static Web Apps | Hospedagem da aplicação |
+
+## Páginas
+
+| Rota | Conteúdo |
+| --- | --- |
+| `/` | Página inicial |
+| `/catalogo` | Catálogo de serviços |
+| `/catalogo_blackweek` | Catálogo promocional |
+| `/agendamento` | Processo de agendamento e pagamento |
+
+## Estrutura do projeto
+
+```text
+src/
+├── components/
+│   ├── Footer.jsx / Footer.css
+│   ├── Header.jsx / Header.css
+│   ├── MethodCard.jsx
+│   └── StarBackground.jsx / StarBackground.css
+├── data/
+│   ├── catalogo.js
+│   ├── catalogo_bblackweek.js
+│   ├── cursos.js
+│   ├── livros.js
+│   └── oraculos.js
+├── pages/
+│   ├── Agendamento.jsx / Agendamento.css
+│   ├── Catalogo.jsx / Catalogo.css
+│   ├── Cursos.jsx / Cursos.css
+│   ├── Livros.jsx / Livros.css
+│   ├── Oraculos.jsx / Oraculos.css
+│   ├── Home.jsx / Home.css
+│   └── catalogo_blackweek.jsx
+├── styles/
+│   ├── global.css
+│   └── variables.css
+├── App.jsx
+└── main.jsx
+```
+
+## Como executar localmente
+
+### Pré-requisitos
+
+- Node.js 18 ou superior
+- npm
+
+### Instalação
 
 ```bash
+git clone https://github.com/SkYantS28/site_cartascomsky_.git
+cd site_cartascomsky_
 npm install
 ```
 
-3. Execute o servidor de desenvolvimento:
+### Ambiente de desenvolvimento
 
 ```bash
 npm run dev
 ```
 
-4. Abra [http://localhost:5173](http://localhost:5173) no seu navegador
+A aplicação estará disponível em `http://localhost:5173`.
 
-## Build para Produção
+### Build de produção
 
 ```bash
 npm run build
 ```
 
-O build será gerado na pasta `dist/`.
+Os arquivos de produção serão gerados no diretório `dist/`.
 
-## Estrutura do Projeto
+### Visualizar o build localmente
 
-```
-src/
-├── components/
-│   ├── Header.jsx & Header.css
-│   ├── StarBackground.jsx & StarBackground.css
-│   └── MethodCard.jsx
-├── pages/
-│   ├── Home.jsx & Home.css
-│   ├── Catalogo.jsx & Catalogo.css
-│   ├── Livros.jsx & Livros.css
-│   ├── Oraculos.jsx & Oraculos.css
-│   └── Agendamento.jsx & Agendamento.css
-├── data/
-│   ├── catalogo.js
-│   ├── livros.js
-│   └── oraculos.js
-├── styles/
-│   ├── variables.css (cores e tokens)
-│   ├── global.css (reset e tipografia)
-│   └── animations.css (animações)
-├── App.jsx (router principal)
-└── main.jsx (entry point)
+```bash
+npm run preview
 ```
 
-## Customizações
+## Implantação
 
-### Adicionar sua foto
+O repositório possui workflow do GitHub Actions para build e implantação no **Azure Static Web Apps**:
 
-1. Coloque a imagem em `public/images/sky.jpg`
-2. A foto será automaticamente exibida na home page
+- Push na branch `main`
+- Pull requests destinadas à branch `main`
+- Diretório de saída configurado como `dist`
 
-### Adicionar imagens dos livros
+O deploy depende da variável protegida `AZURE_STATIC_WEB_APPS_API_TOKEN`, configurada nos secrets do repositório.
 
-1. Crie a pasta `public/images/livros/`
-2. Adicione as imagens: `livro-1.jpg`, `livro-2.jpg`, etc.
+## Aprendizados demonstrados
 
-### Adicionar imagens dos oráculos
+Este projeto evidencia conhecimentos relacionados a:
 
-1. Crie a pasta `public/images/oraculos/`
-2. Adicione as imagens: `oraculo-1.jpg`, `oraculo-2.jpg`, etc.
+- Desenvolvimento de interfaces com React
+- Organização de componentes reutilizáveis
+- Configuração de rotas em uma SPA
+- Separação entre apresentação, dados e estilos
+- Uso de CSS responsivo e variáveis visuais
+- Integração com links externos e WhatsApp
+- Configuração de build com Vite
+- Estruturação de um projeto para entrega acadêmica
+- Publicação automatizada com GitHub Actions
 
-### Alterar dados do catálogo
+## Personalização
 
-Edite `src/data/catalogo.js` para:
-- Adicionar/remover métodos
-- Alterar preços
-- Modificar descrições
-- Adicionar/remover planos
+### Dados do catálogo
 
-### Alterar WhatsApp
+Edite os arquivos da pasta `src/data/` para alterar produtos, serviços e informações exibidas.
 
-Abra `src/pages/Agendamento.jsx` e altere:
+### WhatsApp
+
+O número e a mensagem padrão são configurados em `src/pages/Agendamento.jsx`:
 
 ```javascript
 const whatsappNumber = "5521978757381";
 ```
 
-### Alterar cores
+### Estilo
 
-Edite `src/styles/variables.css` para personalizar o esquema de cores.
+As principais cores, espaçamentos e efeitos visuais podem ser ajustados em `src/styles/variables.css`.
 
-## Tecnologias
+## Autor
 
-- **React 18.3.1** - UI library
-- **React Router DOM 6.28.0** - Routing
-- **Vite 5.4.2** - Build tool
-- **CSS Custom Properties** - Styling
-
-## Fontes
-
-- **Cormorant Garamond** - Headings (serif)
-- **Montserrat** - Body text e UI (sans-serif)
-
-Importadas via Google Fonts.
-
-## Estrutura de Cores
-
-- Primária: `--pink` (#e83f91)
-- Secundária: `--roxo` (#6b3fa0), `--roxo-escuro` (#45256b)
-- Backgrounds: `--lilas-fundo` (#faf7ff), `--lilas-claro` (#f1e9ff)
-- Texto: `--texto` (#493b52), `--texto-claro` (#75677d)
-- Sombra: `--sombra` (0 10px 30px rgba(107, 63, 160, 0.10))
-
-## Scripts Disponíveis
-
-- `npm run dev` - Inicia servidor de desenvolvimento
-- `npm run build` - Build para produção
-- `npm run preview` - Preview do build produção
+Projeto desenvolvido por **Sky Crizosti**.
 
 ## Licença
 
-Todos os direitos reservados a Cartas com Sky.
+Todos os direitos sobre identidade visual, textos e materiais autorais pertencem a Cartas com Sky.
