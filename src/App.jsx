@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import StarBackground from "./components/StarBackground";
 
 import Home from "./pages/Home";
-import Catalogo from "./pages/Catalogo";
+import CatalogoBlackweek from "./pages/catalogo_blackweek";
 import Agendamento from "./pages/Agendamento";
 
 export default function App() {
@@ -18,7 +18,8 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/catalogo" element={<Catalogo />} />
+          <Route path="/catalogo" element={<CatalogoBlackweek />} />
+          <Route path="/catalogo_blackweek" element={<CatalogoBlackweek />} />
           <Route path="/agendamento" element={<Agendamento />} />
         </Routes>
       </main>

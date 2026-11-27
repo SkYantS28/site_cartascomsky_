@@ -44,7 +44,7 @@ export default function Agendamento() {
             de perguntas ou horas que você deseja contratar.
           </p>
 
-          <a href="/catalogo" className="link-button">
+          <a href="/catalogo_blackweek" className="link-button">
             Ver catálogo →
           </a>
         </div>

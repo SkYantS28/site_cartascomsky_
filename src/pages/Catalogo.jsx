@@ -1,34 +1,50 @@
 
-import {
-  perguntas,
-  consultaLivre,
-  espiritualidade,
-  previsaoMensal,
-  previsoes2027,
-  metodos,
-  metodosPrecos,
-  planos,
-  fidelidade,
-  informacoes,
-} from "../data/catalogo";
+import * as catalogoNormal from "../data/catalogo";
+import * as catalogoBlackweek from "../data/catalogo_bblackweek";
 
 import MethodCard from "../components/MethodCard";
 
 import "./Catalogo.css";
 
+const formatarPreco = (valor) =>
+  new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(valor);
+
 function PriceCard({ item }) {
   return (
-    <div className="price-card">
+    <div className={`price-card ${item.valorOriginal ? "price-card-sale" : ""}`}>
       <span>{item.nome}</span>
 
-      <strong>
-        R$ {item.valor.toFixed(2).replace(".", ",")}
-      </strong>
+      {item.valorOriginal && (
+        <del>{formatarPreco(item.valorOriginal)}</del>
+      )}
+
+      <strong>{formatarPreco(item.valor)}</strong>
+
+      {item.promocao && (
+        <small className="price-card-promo">{item.promocao}</small>
+      )}
     </div>
   );
 }
 
-export default function Catalogo() {
+export default function Catalogo({ blackweek = false }) {
+  const dados = blackweek ? catalogoBlackweek : catalogoNormal;
+  const {
+    perguntas,
+    consultaLivre,
+    espiritualidade,
+    previsaoMensal,
+    previsoes2027,
+    metodos,
+    metodosPrecos,
+    planos,
+    fidelidade,
+    informacoes,
+  } = dados;
+
   const categorias = [
     "Caminhos, Escolhas e Decisões",
     "Trabalho, Carreira e Prosperidade",
@@ -63,18 +79,40 @@ export default function Catalogo() {
     <div className="catalogo">
 
       <section className="page-header">
-        <span>✦ CARTAS COM SKY</span>
+        <span>{blackweek ? "✦ BLACK WEEK" : "✦ CARTAS COM SKY"}</span>
 
         <h1>
-          Catálogo de
-          <strong> Leituras</strong>
+          {blackweek ? (
+            <>
+              Catálogo
+              <strong> Black Week</strong>
+            </>
+          ) : (
+            <>
+              Catálogo de
+              <strong> Leituras</strong>
+            </>
+          )}
         </h1>
 
         <p>
-          Escolha a leitura que melhor corresponde ao que
-          você deseja compreender neste momento.
+          {blackweek
+            ? "Aproveite as ofertas especiais da Black Week em todo o catálogo."
+            : "Escolha a leitura que melhor corresponde ao que você deseja compreender neste momento."}
         </p>
       </section>
+
+      {blackweek && (
+        <section className="blackweek-banner" aria-label="Ofertas Black Week">
+          <h2>Ofertas Black Week</h2>
+          <p>
+            50% de desconto nos itens do catálogo, exceto nas perguntas e na
+            taxa de urgência. Nas perguntas ao Oráculo e à Espiritualidade,
+            pague por uma pergunta e ganhe outra; nos combos, receba o dobro de
+            perguntas. Os planos mantêm o preço normal e ganham mais 2 meses.
+          </p>
+        </section>
+      )}
 
       {/* SUMÁRIO DO CATÁLOGO */}
 
@@ -173,6 +211,12 @@ export default function Catalogo() {
               </strong>
 
               <p>{plano.descricao}</p>
+              {plano.mesesBonus && (
+                <p className="plan-blackweek-bonus">
+                  Pague o valor normal e ganhe mais {plano.mesesBonus} meses
+                  deste plano.
+                </p>
+              )}
             </div>
           ))}
         </div>
@@ -328,10 +372,7 @@ export default function Catalogo() {
             {previsoes2027.consultas.map((item) => (
               <PriceCard
                 key={item.nome}
-                item={{
-                  nome: item.nome,
-                  valor: item.valor,
-                }}
+                item={item}
               />
             ))}
           </div>
@@ -351,10 +392,7 @@ export default function Catalogo() {
 
           <div className="prices">
             <PriceCard
-              item={{
-                nome: previsoes2027.completão.nome,
-                valor: previsoes2027.completão.valor,
-              }}
+              item={previsoes2027.completão}
             />
           </div>
         </div>

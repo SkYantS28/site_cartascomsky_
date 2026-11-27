@@ -27,7 +27,7 @@ export default function Home() {
           </p>
 
           <div className="hero-buttons">
-            <Link to="/catalogo" className="button-primary">
+            <Link to="/catalogo_blackweek" className="button-primary">
               Conhecer o catálogo
             </Link>
 
@@ -115,7 +115,7 @@ export default function Home() {
           esperando por você.
         </h2>
 
-        <Link to="/catalogo">
+        <Link to="/catalogo_blackweek">
           Explorar o catálogo →
         </Link>
 

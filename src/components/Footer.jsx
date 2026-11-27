@@ -27,7 +27,7 @@ export default function Footer() {
           <h2>Navegação</h2>
 
           <Link to="/">Início</Link>
-          <Link to="/catalogo">Catálogo</Link>
+          <Link to="/catalogo_blackweek">Catálogo</Link>
           <Link to="/livros">Livros que indico</Link>
           <Link to="/cursos">Cursos que indico</Link>
           <Link to="/oraculos">Meus Oráculos</Link>

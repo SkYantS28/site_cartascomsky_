@@ -17,7 +17,7 @@ export default function Header() {
 
         <nav>
           <Link to="/" className={isActive("/") ? "active" : ""}>Início</Link>
-          <Link to="/catalogo" className={isActive("/catalogo") ? "active" : ""}>Catálogo</Link>
+          <Link to="/catalogo_blackweek" className={isActive("/catalogo_blackweek") || isActive("/catalogo") ? "active" : ""}>Catálogo</Link>
         </nav>
 
         <Link to="/agendamento" className="header-button">
