@@ -198,8 +198,22 @@ export default function Catalogo() {
               <span>atendimentos</span>
 
               <p>{item.beneficio}</p>
+              <p className="fidelity-discount">
+                <strong>{item.desconto}% de desconto</strong>
+                <span> em qualquer item do catálogo</span>
+              </p>
             </div>
           ))}
+        </div>
+
+        <div className="referral-program">
+          <span>✦ INDIQUE E GANHE</span>
+          <h3>Indique uma pessoa e escolha sua recompensa</h3>
+          <div className="referral-rewards">
+            <p>1 pergunta grátis</p>
+            <span>ou</span>
+            <p>20% de desconto em qualquer item do catálogo</p>
+          </div>
         </div>
       </section>
 

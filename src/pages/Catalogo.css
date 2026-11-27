@@ -617,6 +617,63 @@
   font-size: 13px;
 }
 
+.fidelity-grid .fidelity-discount {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.fidelity-discount strong {
+  display: inline;
+  font-size: inherit;
+  color: var(--pink);
+}
+
+.fidelity-discount span {
+  font-size: inherit;
+}
+
+.referral-program {
+  margin-top: 30px;
+  padding: 35px;
+  background: var(--lilas-claro);
+  border: 1px solid var(--lilas);
+  border-radius: 22px;
+}
+
+.referral-program > span {
+  color: var(--pink);
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.referral-program h3 {
+  margin: 12px 0 20px;
+  color: var(--roxo-escuro);
+  font-size: 22px;
+}
+
+.referral-rewards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.referral-rewards p {
+  margin: 0;
+  padding: 12px 18px;
+  color: var(--roxo-escuro);
+  background: white;
+  border-radius: 14px;
+  font-weight: 600;
+}
+
+.referral-rewards > span {
+  color: var(--texto-claro);
+}
+
 /* =========================================
    INFORMAÇÕES IMPORTANTES
 ========================================= */

@@ -1135,17 +1135,21 @@ export const fidelidade = [
   {
     atendimentos: 5,
     beneficio: "1 pergunta bônus gratuita",
+    desconto: 15,
   },
   {
     atendimentos: 10,
     beneficio: "1 método ou previsão bônus gratuita",
+    desconto: 20,
   },
   {
     atendimentos: 15,
     beneficio: "1 pergunta + 1 método ou previsão bônus gratuita",
+    desconto: 25,
   },
   {
     atendimentos: 20,
     beneficio: "1 pergunta + 1 método + 1 previsão bônus gratuita",
+    desconto: 30,
   },
 ];
