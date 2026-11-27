@@ -14,7 +14,20 @@ const formatarPreco = (valor) =>
 
 function PriceCard({ item }) {
   return (
-    <div className={`price-card ${item.valorOriginal ? "price-card-sale" : ""}`}>
+    <div
+      className={`price-card${item.valorOriginal ? " price-card-sale" : ""}${
+        item.promocao ? " price-card-special" : ""
+      }`}
+    >
+      {item.valorOriginal && (
+        <span className="price-card-badge">50% OFF</span>
+      )}
+      {item.promocao && (
+        <span className="price-card-badge price-card-badge-bonus">
+          DOBRO DE PERGUNTAS
+        </span>
+      )}
+
       <span>{item.nome}</span>
 
       {item.valorOriginal && (
@@ -104,13 +117,45 @@ export default function Catalogo({ blackweek = false }) {
 
       {blackweek && (
         <section className="blackweek-banner" aria-label="Ofertas Black Week">
-          <h2>Ofertas Black Week</h2>
-          <p>
-            50% de desconto nos itens do catálogo, exceto nas perguntas e na
-            taxa de urgência. Nas perguntas ao Oráculo e à Espiritualidade,
-            pague por uma pergunta e ganhe outra; nos combos, receba o dobro de
-            perguntas. Os planos mantêm o preço normal e ganham mais 2 meses.
-          </p>
+          <div className="blackweek-banner-heading">
+            <span>✦ OFERTAS ESPECIAIS ✦</span>
+            <h2>Black Week</h2>
+            <p>Escolha sua leitura favorita e aproveite as condições especiais.</p>
+            <strong className="blackweek-validity">
+              Válida de 27/11 a 13/12
+            </strong>
+          </div>
+
+          <div className="blackweek-offer-grid">
+            <article className="blackweek-offer-card">
+              <span>DESCONTO</span>
+              <strong>50% OFF</strong>
+              <h3>Em leituras, previsões e métodos</h3>
+              <p>
+                Perguntas, planos mensais e taxa de urgência não entram nesta
+                oferta.
+              </p>
+            </article>
+
+            <article className="blackweek-offer-card">
+              <span>OFERTA EM PERGUNTAS</span>
+              <strong>Leve o dobro</strong>
+              <h3>Pague 1 e ganhe 1</h3>
+              <p>
+                Válido para perguntas ao Oráculo e à Espiritualidade. Nos
+                combos, você recebe o dobro de perguntas.
+              </p>
+            </article>
+
+            <article className="blackweek-offer-card">
+              <span>PLANOS MENSAIS</span>
+              <strong>+2 meses</strong>
+              <h3>Sem alterar o preço</h3>
+              <p>
+                Pague o valor normal e ganhe mais 2 meses do mesmo plano.
+              </p>
+            </article>
+          </div>
         </section>
       )}
 
@@ -202,7 +247,15 @@ export default function Catalogo({ blackweek = false }) {
 
         <div className="plan-grid">
           {planos.map((plano) => (
-            <div className="plan-card" key={plano.nome}>
+            <div
+              className={`plan-card${plano.mesesBonus ? " plan-card-blackweek" : ""}`}
+              key={plano.nome}
+            >
+              {plano.mesesBonus && (
+                <span className="plan-blackweek-badge">
+                  ✦ GANHE +{plano.mesesBonus} MESES
+                </span>
+              )}
               <h3>{plano.nome}</h3>
 
               <strong>
