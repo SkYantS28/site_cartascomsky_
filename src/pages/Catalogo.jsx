@@ -199,7 +199,7 @@ export default function Catalogo() {
 
               <p>{item.beneficio}</p>
               <p className="fidelity-discount">
-                <strong>{item.desconto}% de desconto</strong>
+                ou <strong>{item.desconto}% de desconto</strong>
                 <span> em qualquer item do catálogo</span>
               </p>
             </div>
@@ -208,12 +208,17 @@ export default function Catalogo() {
 
         <div className="referral-program">
           <span>✦ INDIQUE E GANHE</span>
-          <h3>Indique uma pessoa e escolha sua recompensa</h3>
+          <h3>Indique uma pessoa e vocês dois ganham</h3>
+          <p className="referral-description">
+            Quando a pessoa indicada fizer uma consulta e informar que veio por
+            sua recomendação, ela e você podem escolher uma recompensa:
+          </p>
           <div className="referral-rewards">
             <p>1 pergunta grátis</p>
             <span>ou</span>
             <p>20% de desconto em qualquer item do catálogo</p>
           </div>
+          <p className="referral-note">A recompensa vale para cada um de vocês.</p>
         </div>
       </section>
 

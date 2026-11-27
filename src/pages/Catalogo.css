@@ -653,6 +653,16 @@
   font-size: 22px;
 }
 
+.referral-description,
+.referral-note {
+  color: var(--texto-claro);
+  line-height: 1.6;
+}
+
+.referral-description {
+  margin: 0 0 20px;
+}
+
 .referral-rewards {
   display: flex;
   align-items: center;
@@ -672,6 +682,11 @@
 
 .referral-rewards > span {
   color: var(--texto-claro);
+}
+
+.referral-note {
+  margin: 16px 0 0;
+  font-size: 13px;
 }
 
 /* =========================================
